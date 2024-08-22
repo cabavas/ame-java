@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TutorService {
+public class VeterinarioCanilService {
 
     @Autowired
     private TutorRepository repo;
@@ -17,7 +17,7 @@ public class TutorService {
         return repo.findAll();
     }
 
-    public Tutor findById(Long id) {
+    public Tutor getTutorById(Long id) {
         return repo.findById(id).orElse(null);
     }
 

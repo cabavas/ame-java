@@ -16,8 +16,12 @@ public class AnimalService {
         return repo.findAll();
     }
 
-    public Animal getAnimalById(Long id) {
+    public Animal findById(Long id) {
         return repo.findById(id).orElse(null);
+    }
+
+    public Animal save(Animal animal) {
+        return repo.save(animal);
     }
 
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/animals")
+@RequestMapping("/animais")
 public class AnimalController {
 
     @Autowired
@@ -21,7 +21,11 @@ public class AnimalController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Animal> getAnimalById(@PathVariable Long id) {
-        return ResponseEntity.ok(service.getAnimalById(id));
+    public ResponseEntity<Animal> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(service.findById(id));
     }
+
+    @PostMapping
+    public ResponseEntity<Animal> save(@RequestBody Animal animal) {
+        return ResponseEntity.ok(service.save(animal));}
 }

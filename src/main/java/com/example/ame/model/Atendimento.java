@@ -1,10 +1,14 @@
 package com.example.ame.model;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tb_atendimento")
@@ -29,8 +33,8 @@ public class Atendimento implements Serializable {
     @Column(name = "id_codigo_solicitacao")
     private Integer solicitCode;
 
-    @OneToOne
-    @JoinColumn(name = "tb_animal")
+    @ManyToOne
+    @JoinColumn(name = "id_animal")
     private Animal animalId;
 
     @Column(name = "hora_final")
@@ -41,6 +45,8 @@ public class Atendimento implements Serializable {
 
     @Column(name = "id_veterinario")
     private Integer vetId;
+
+    private Map<String, Object> otherProperties = new HashMap<>();
 
     public Atendimento() {
     }
@@ -56,6 +62,11 @@ public class Atendimento implements Serializable {
         this.endTime = endTime;
         this.protocol = protocol;
         this.vetId = vetId;
+    }
+
+    @JsonAnySetter
+    public void setOtherProperty(String key, Object value) {
+        this.otherProperties.put(key, value);
     }
 
     public Long getId() {

@@ -2,7 +2,6 @@ package com.example.ame.controller;
 
 import com.example.ame.model.Tutor;
 import com.example.ame.service.TutorService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tutores")
-public class TutorController {
+@RequestMapping("/veterinarios-canil")
+public class VeterinarioCanilController {
 
     @Autowired
     private TutorService service;
