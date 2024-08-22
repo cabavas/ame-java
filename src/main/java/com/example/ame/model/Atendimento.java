@@ -46,8 +46,6 @@ public class Atendimento implements Serializable {
     @Column(name = "id_veterinario")
     private Integer vetId;
 
-    private Map<String, Object> otherProperties = new HashMap<>();
-
     public Atendimento() {
     }
 
@@ -62,11 +60,6 @@ public class Atendimento implements Serializable {
         this.endTime = endTime;
         this.protocol = protocol;
         this.vetId = vetId;
-    }
-
-    @JsonAnySetter
-    public void setOtherProperty(String key, Object value) {
-        this.otherProperties.put(key, value);
     }
 
     public Long getId() {
