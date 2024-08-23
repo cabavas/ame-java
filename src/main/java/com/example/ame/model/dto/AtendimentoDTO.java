@@ -1,51 +1,28 @@
-package com.example.ame.model;
+package com.example.ame.model.dto;
 
-import jakarta.persistence.*;
+import com.example.ame.model.Animal;
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 import java.io.Serializable;
-import java.time.LocalTime;
 
-@Entity
-@Table(name = "tb_atendimento")
-public class Atendimento implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_atendimento", nullable = false)
-    private Long id;
+public class AtendimentoDTO implements Serializable {
 
-    @Column(name = "id_tipo_consulta")
     private Integer consultType;
-
-    @Column(name = "data_atendimento")
     private String consultDate;
-
-    @Column(name = "hora_inicial")
     private String initialTime;
-
-    @Column(name = "id_tipo_paciente")
     private Integer kindPatient;
-
-    @Column(name = "id_codigo_solicitacao")
     private Integer solicitCode;
-
-    @ManyToOne
-    @JoinColumn(name = "id_animal")
-    private Animal animalId;
-
-    @Column(name = "hora_final")
+    private Long animalId;
     private String endTime;
-
-    @Column(name = "protocolo")
     private String protocol;
-
-    @Column(name = "id_veterinario")
     private Integer vetId;
 
-    public Atendimento() {
+    public AtendimentoDTO() {
     }
 
-    public Atendimento(Long id, Integer consultType, String consultDate, String initialTime, Integer kindPatient, Integer solicitCode, Animal animalId, String endTime, String protocol, Integer vetId) {
-        this.id = id;
+    public AtendimentoDTO(Integer consultType, String consultDate, String initialTime, Integer kindPatient, Integer solicitCode, Long animalId, String endTime, String protocol, Integer vetId) {
         this.consultType = consultType;
         this.consultDate = consultDate;
         this.initialTime = initialTime;
@@ -55,10 +32,6 @@ public class Atendimento implements Serializable {
         this.endTime = endTime;
         this.protocol = protocol;
         this.vetId = vetId;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public Integer getConsultType() {
@@ -101,11 +74,11 @@ public class Atendimento implements Serializable {
         this.solicitCode = solicitCode;
     }
 
-    public Animal getAnimalId() {
+    public Long getAnimalId() {
         return animalId;
     }
 
-    public void setAnimalId(Animal animalId) {
+    public void setAnimalId(Long animalId) {
         this.animalId = animalId;
     }
 

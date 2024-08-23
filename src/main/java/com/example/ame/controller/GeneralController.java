@@ -1,6 +1,7 @@
 package com.example.ame.controller;
 
 import com.example.ame.model.Atendimento;
+import com.example.ame.model.dto.AtendimentoDTO;
 import com.example.ame.service.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +34,17 @@ public class GeneralController {
     public ResponseEntity<?> handlePost(@RequestBody Map<String, Object> data) {
         String type = (String) data.get("type");
 
+        data.remove("type");
+
         switch (type) {
             case "atendimento":
                 ObjectMapper objectMapper = new ObjectMapper();
-                Atendimento atendimento = objectMapper.convertValue(data, Atendimento.class);
-                return ResponseEntity.ok(atendimentoService.save(atendimento));
+                AtendimentoDTO atendimentoDTO = objectMapper.convertValue(data, AtendimentoDTO.class);
+                try {
+                    return ResponseEntity.ok(atendimentoService.save(atendimentoDTO));
+                } catch (Exception e) {
+                    return ResponseEntity.badRequest().body("Erro ao salvar atendimento: " + e.getMessage());
+                }
 //            case "castracao":
 //                return ResponseEntity.ok(castracaoService.create(data));
 //            case "encaminhamento":
