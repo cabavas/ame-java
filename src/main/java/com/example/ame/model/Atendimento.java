@@ -3,7 +3,6 @@ package com.example.ame.model;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.time.LocalTime;
 
 @Entity
 @Table(name = "tb_atendimento")
@@ -11,7 +10,7 @@ public class Atendimento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_atendimento", nullable = false)
-    private Long id;
+    private Integer id;
 
     @Column(name = "id_tipo_consulta")
     private Integer consultType;
@@ -44,8 +43,7 @@ public class Atendimento implements Serializable {
     public Atendimento() {
     }
 
-    public Atendimento(Long id, Integer consultType, String consultDate, String initialTime, Integer kindPatient, Integer solicitCode, Animal animalId, String endTime, String protocol, Integer vetId) {
-        this.id = id;
+    public Atendimento(Integer consultType, String consultDate, String initialTime, Integer kindPatient, Integer solicitCode, Animal animalId, String endTime, String protocol, Integer vetId) {
         this.consultType = consultType;
         this.consultDate = consultDate;
         this.initialTime = initialTime;
@@ -57,7 +55,7 @@ public class Atendimento implements Serializable {
         this.vetId = vetId;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -101,11 +99,11 @@ public class Atendimento implements Serializable {
         this.solicitCode = solicitCode;
     }
 
-    public Animal getAnimalId() {
+    public Animal getAnimal() {
         return animalId;
     }
 
-    public void setAnimalId(Animal animalId) {
+    public void setAnimal(Animal animalId) {
         this.animalId = animalId;
     }
 

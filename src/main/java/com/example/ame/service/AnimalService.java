@@ -16,9 +16,11 @@ public class AnimalService {
         return repo.findAll();
     }
 
-    public Animal findById(Long id) {
+    public Animal findById(Integer id) {
         return repo.findById(id).orElse(null);
     }
+
+    public boolean exists(Integer id) {return repo.existsById(id);}
 
     public Animal save(Animal animal) {
         return repo.save(animal);

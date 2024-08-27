@@ -12,12 +12,12 @@ public class Animal implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_animal")
-    private Long id;
+    private Integer id;
 
     @Column(name = "nome_animal")
     private String animalName;
 
-    @Column(name = "nascimento")
+    @Column(name = "idade")
     private Integer age;
 
     @Column(name = "especie")
@@ -67,7 +67,7 @@ public class Animal implements Serializable {
     public Animal() {
     }
 
-    public Animal(Long id, String animalName, Integer age, String species, String breed, String sex, String fur, Float weight, String size, Tutor tutor, Boolean castrated, LocalDate castrationDate, Boolean vermifuged, LocalDate vermifugationDate, Boolean vaccinated, LocalDate vaccinationDate, String history) {
+    public Animal(Integer id, String animalName, Integer age, String species, String breed, String sex, String fur, Float weight, String size, Tutor tutor, Boolean castrated, LocalDate castrationDate, Boolean vermifuged, LocalDate vermifugationDate, Boolean vaccinated, LocalDate vaccinationDate, String history) {
         this.id = id;
         this.animalName = animalName;
         this.age = age;
@@ -87,7 +87,7 @@ public class Animal implements Serializable {
         this.history = history;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -155,11 +155,11 @@ public class Animal implements Serializable {
         this.size = size;
     }
 
-    public Tutor getTutorId() {
+    public Tutor getTutor() {
         return tutor;
     }
 
-    public void setTutorId(Tutor tutor) {
+    public void setTutor(Tutor tutor) {
         this.tutor = tutor;
     }
 

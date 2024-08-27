@@ -12,7 +12,7 @@ public class AtendimentoAmbulatorio implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_atendimento_ambulatorio", nullable = false)
-    private Long id;
+    private Integer id;
 
     @Column(name = "id_tipo_consulta")
     private Integer consultType;
@@ -64,7 +64,7 @@ public class AtendimentoAmbulatorio implements Serializable {
     public AtendimentoAmbulatorio() {
     }
 
-    public AtendimentoAmbulatorio(Long id, Integer consultType, LocalTime initialTime, Integer patientKind, Integer solicitCode, Animal animalId, Tutor tutorId, String anamnesis, String procedures, String surgeon, String observations, String treatment, String animalStatus, String atendimentoDate, LocalTime atendimentoTime, LocalDate consultDate) {
+    public AtendimentoAmbulatorio(Integer id, Integer consultType, LocalTime initialTime, Integer patientKind, Integer solicitCode, Animal animalId, Tutor tutorId, String anamnesis, String procedures, String surgeon, String observations, String treatment, String animalStatus, String atendimentoDate, LocalTime atendimentoTime, LocalDate consultDate) {
         this.id = id;
         this.consultType = consultType;
         this.initialTime = initialTime;
@@ -83,7 +83,7 @@ public class AtendimentoAmbulatorio implements Serializable {
         this.consultDate = consultDate;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 

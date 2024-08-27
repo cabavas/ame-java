@@ -12,7 +12,7 @@ public class VeterinarioCanil implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_veterinario_canil")
-    private Long id;
+    private Integer id;
 
     @Column(name = "protocolo")
     private String protocol;
@@ -149,7 +149,7 @@ public class VeterinarioCanil implements Serializable {
     public VeterinarioCanil() {
     }
 
-    public VeterinarioCanil(Long id, String protocol, String order, LocalDate orderDate, String complainantName, String complaintAddress, String animalName, String species, Integer age, String breed, String weight, String ownerName, String address, String number, String complement, String neighborhood, String city, String phone, String whatsapp, String rg, String cpf, LocalDate consultDate, Integer vetId, String collarColor, String collarNumber, String animalHistory, String castrated, String castrationDate, String vermifuged, String vermifugationDate, String vaccinated, String vaccinationDate, String firstCollarEvolution, String firstCollarEvolutionDate, String secondCollarEvolution, String secondCollarEvolutionDate, String thirdCollarEvolution, String thirdCollarEvolutionDate, String chemo, String amountChemos, String firstChemo, String secondChemo, String thirdChemo, String fourthChemo, String fifthChemo) {
+    public VeterinarioCanil(Integer id, String protocol, String order, LocalDate orderDate, String complainantName, String complaintAddress, String animalName, String species, Integer age, String breed, String weight, String ownerName, String address, String number, String complement, String neighborhood, String city, String phone, String whatsapp, String rg, String cpf, LocalDate consultDate, Integer vetId, String collarColor, String collarNumber, String animalHistory, String castrated, String castrationDate, String vermifuged, String vermifugationDate, String vaccinated, String vaccinationDate, String firstCollarEvolution, String firstCollarEvolutionDate, String secondCollarEvolution, String secondCollarEvolutionDate, String thirdCollarEvolution, String thirdCollarEvolutionDate, String chemo, String amountChemos, String firstChemo, String secondChemo, String thirdChemo, String fourthChemo, String fifthChemo) {
         this.id = id;
         this.protocol = protocol;
         this.order = order;
@@ -197,7 +197,7 @@ public class VeterinarioCanil implements Serializable {
         this.fifthChemo = fifthChemo;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 

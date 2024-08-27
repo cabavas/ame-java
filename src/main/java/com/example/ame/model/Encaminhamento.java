@@ -11,7 +11,7 @@ public class Encaminhamento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_encaminhamento")
-    private Long id;
+    private Integer id;
 
     @Column(name = "data_atendimento")
     private LocalDate consultDate;
@@ -48,7 +48,7 @@ public class Encaminhamento implements Serializable {
     public Encaminhamento() {
     }
 
-    public Encaminhamento(Long id, LocalDate consultDate, Integer solicitCode, Integer patientKind, String protectorName, Tutor tutorId, Animal animalId, String exam1, String exam2, String exam3, Integer clinic) {
+    public Encaminhamento(Integer id, LocalDate consultDate, Integer solicitCode, Integer patientKind, String protectorName, Tutor tutorId, Animal animalId, String exam1, String exam2, String exam3, Integer clinic) {
         this.id = id;
         this.consultDate = consultDate;
         this.solicitCode = solicitCode;
@@ -62,7 +62,7 @@ public class Encaminhamento implements Serializable {
         this.clinic = clinic;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 

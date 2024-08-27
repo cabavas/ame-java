@@ -39,9 +39,9 @@ public class GeneralController {
         switch (type) {
             case "atendimento":
                 ObjectMapper objectMapper = new ObjectMapper();
-                AtendimentoDTO atendimentoDTO = objectMapper.convertValue(data, AtendimentoDTO.class);
+                Atendimento atendimento = objectMapper.convertValue(data, Atendimento.class);
                 try {
-                    return ResponseEntity.ok(atendimentoService.save(atendimentoDTO));
+                    return ResponseEntity.ok(atendimentoService.save(atendimento));
                 } catch (Exception e) {
                     return ResponseEntity.badRequest().body("Erro ao salvar atendimento: " + e.getMessage());
                 }

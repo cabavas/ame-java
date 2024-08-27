@@ -22,7 +22,7 @@ public class TutorController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Tutor> findById(@PathVariable Long id) {
+    public ResponseEntity<Tutor> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(service.findById(id));
     }
 

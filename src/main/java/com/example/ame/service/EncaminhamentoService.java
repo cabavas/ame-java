@@ -17,7 +17,7 @@ public class EncaminhamentoService {
 
     public List<Encaminhamento> findAll() {return repo.findAll();}
 
-    public Encaminhamento findById(Long id) {return repo.findById(id).orElse(null);}
+    public Encaminhamento findById(Integer id) {return repo.findById(id).orElse(null);}
 
     public Encaminhamento save(Encaminhamento encaminhamento) {
         return repo.save(encaminhamento);

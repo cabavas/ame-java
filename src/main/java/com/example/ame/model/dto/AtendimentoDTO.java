@@ -1,9 +1,6 @@
 package com.example.ame.model.dto;
 
 import com.example.ame.model.Animal;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
 import java.io.Serializable;
 
@@ -14,7 +11,7 @@ public class AtendimentoDTO implements Serializable {
     private String initialTime;
     private Integer kindPatient;
     private Integer solicitCode;
-    private Long animalId;
+    private Animal animal;
     private String endTime;
     private String protocol;
     private Integer vetId;
@@ -22,13 +19,13 @@ public class AtendimentoDTO implements Serializable {
     public AtendimentoDTO() {
     }
 
-    public AtendimentoDTO(Integer consultType, String consultDate, String initialTime, Integer kindPatient, Integer solicitCode, Long animalId, String endTime, String protocol, Integer vetId) {
+    public AtendimentoDTO(Integer consultType, String consultDate, String initialTime, Integer kindPatient, Integer solicitCode, Animal animal, String endTime, String protocol, Integer vetId) {
         this.consultType = consultType;
         this.consultDate = consultDate;
         this.initialTime = initialTime;
         this.kindPatient = kindPatient;
         this.solicitCode = solicitCode;
-        this.animalId = animalId;
+        this.animal = animal;
         this.endTime = endTime;
         this.protocol = protocol;
         this.vetId = vetId;
@@ -74,12 +71,12 @@ public class AtendimentoDTO implements Serializable {
         this.solicitCode = solicitCode;
     }
 
-    public Long getAnimalId() {
-        return animalId;
+    public Animal getAnimal() {
+        return animal;
     }
 
-    public void setAnimalId(Long animalId) {
-        this.animalId = animalId;
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
     }
 
     public String getEndTime() {

@@ -15,7 +15,7 @@ public class CastracaoService {
 
     public List<Castracao> findAll() {return repo.findAll();}
 
-    public Castracao findById(Long id) {return repo.findById(id).orElse(null);}
+    public Castracao findById(Integer id) {return repo.findById(id).orElse(null);}
 
     public Castracao save(Castracao castracao) {
         return repo.save(castracao);

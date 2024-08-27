@@ -19,7 +19,7 @@ public class AtendimentoVeterinarioService {
         return repo.findAll();
     }
 
-    public AtendimentoVeterinario findById(Long id) {
+    public AtendimentoVeterinario findById(Integer id) {
         return repo.findById(id).orElse(null);
     }
 

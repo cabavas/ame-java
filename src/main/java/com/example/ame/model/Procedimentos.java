@@ -11,7 +11,7 @@ public class Procedimentos implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_procedimento")
-    private Long id;
+    private Integer id;
 
     @Column(name = "nome_protetor")
     private String protectorName;
@@ -54,7 +54,7 @@ public class Procedimentos implements Serializable {
     public Procedimentos() {
     }
 
-    public Procedimentos(Long id, String protectorName, Tutor tutorId, Animal animalId, String procedure1, String procedure2, String observations, String scheduleDate, String consultStatus, String protocol, String consultDate, String solicitCode, String patientKind) {
+    public Procedimentos(Integer id, String protectorName, Tutor tutorId, Animal animalId, String procedure1, String procedure2, String observations, String scheduleDate, String consultStatus, String protocol, String consultDate, String solicitCode, String patientKind) {
         this.id = id;
         this.protectorName = protectorName;
         this.tutorId = tutorId;
@@ -70,7 +70,7 @@ public class Procedimentos implements Serializable {
         this.patientKind = patientKind;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 

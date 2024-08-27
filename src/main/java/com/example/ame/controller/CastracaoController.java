@@ -20,7 +20,7 @@ public class CastracaoController {
     public ResponseEntity<List<Castracao>> findAll() {return ResponseEntity.ok(service.findAll());}
 
     @GetMapping("/{id}")
-    public ResponseEntity<Castracao> findById(@PathVariable Long id) {
+    public ResponseEntity<Castracao> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(service.findById(id));
     }
 

@@ -12,7 +12,7 @@ public class Castracao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_castracao")
-    private Long id;
+    private Integer id;
 
     @Column(name = "data_atendimento")
     private LocalDate consultDate;
@@ -52,7 +52,7 @@ public class Castracao implements Serializable {
     public Castracao() {
     }
 
-    public Castracao(Long id, LocalDate consultDate, String solicitCode, String patientKind, String protectorName, Tutor tutorId, String clinica, LocalDate surgeryDate, String surgeryStatus, Animal animalId, String protocol, String vetId) {
+    public Castracao(Integer id, LocalDate consultDate, String solicitCode, String patientKind, String protectorName, Tutor tutorId, String clinica, LocalDate surgeryDate, String surgeryStatus, Animal animalId, String protocol, String vetId) {
         this.id = id;
         this.consultDate = consultDate;
         this.solicitCode = solicitCode;
@@ -67,7 +67,7 @@ public class Castracao implements Serializable {
         this.vetId = vetId;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 

@@ -17,7 +17,7 @@ public class VeterinarioCanilService {
         return repo.findAll();
     }
 
-    public Tutor getTutorById(Long id) {
+    public Tutor getTutorById(Integer id) {
         return repo.findById(id).orElse(null);
     }
 

@@ -1,7 +1,6 @@
 package com.example.ame.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -56,7 +55,7 @@ public class Tutor implements Serializable {
     }
 
     public Tutor(Integer idTutor, String name, String address, Integer number, String complement, String neighborhood, String city, String phone, String whatsapp, String nis, String rg, String cpf, List<Animal> animals) {
-        this.idTutor = idTutor;
+        this.idTutor = this.idTutor;
         this.name = name;
         this.address = address;
         this.number = number;

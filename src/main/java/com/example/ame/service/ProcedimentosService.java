@@ -17,7 +17,7 @@ public class ProcedimentosService {
         return repo.findAll();
     }
 
-    public Procedimentos findById(Long id) {
+    public Procedimentos findById(Integer id) {
         return repo.findById(id).orElse(null);
     }
 

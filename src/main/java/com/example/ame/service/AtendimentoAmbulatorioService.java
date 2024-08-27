@@ -19,7 +19,7 @@ public class AtendimentoAmbulatorioService {
         return repo.findAll();
     }
 
-    public AtendimentoAmbulatorio findById(Long id) {
+    public AtendimentoAmbulatorio findById(Integer id) {
         return repo.findById(id).orElse(null);
     }
 

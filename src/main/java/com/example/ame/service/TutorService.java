@@ -17,9 +17,11 @@ public class TutorService {
         return repo.findAll();
     }
 
-    public Tutor findById(Long id) {
+    public Tutor findById(Integer id) {
         return repo.findById(id).orElse(null);
     }
+
+    public boolean exists(Integer id) {return repo.existsById(id);}
 
     public Tutor save(Tutor tutor) {
         return repo.save(tutor);

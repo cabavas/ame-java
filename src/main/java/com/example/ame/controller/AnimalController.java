@@ -21,7 +21,7 @@ public class AnimalController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Animal> findById(@PathVariable Long id) {
+    public ResponseEntity<Animal> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(service.findById(id));
     }
 

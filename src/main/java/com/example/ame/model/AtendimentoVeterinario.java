@@ -11,7 +11,7 @@ public class AtendimentoVeterinario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_atendimento_veterinario")
-    private Long id;
+    private Integer id;
 
     @OneToOne
     @JoinColumn(name = "id_atendimento")
@@ -29,7 +29,7 @@ public class AtendimentoVeterinario implements Serializable {
     public AtendimentoVeterinario() {
     }
 
-    public AtendimentoVeterinario(Long id, Atendimento atendimento, String anamnesis, String treatment, Integer procedureKind) {
+    public AtendimentoVeterinario(Integer id, Atendimento atendimento, String anamnesis, String treatment, Integer procedureKind) {
         this.id = id;
         this.atendimento = atendimento;
         this.anamnesis = anamnesis;
@@ -37,7 +37,7 @@ public class AtendimentoVeterinario implements Serializable {
         this.procedureKind = procedureKind;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 

@@ -23,7 +23,7 @@ public class AtendimentoAmbulatorioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AtendimentoAmbulatorio> findById(@PathVariable Long id) {
+    public ResponseEntity<AtendimentoAmbulatorio> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(service.findById(id));
     }
 

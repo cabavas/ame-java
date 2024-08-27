@@ -21,7 +21,7 @@ public class AtendimentoVeterinarioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AtendimentoVeterinario> findById(@PathVariable Long id) {
+    public ResponseEntity<AtendimentoVeterinario> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(service.findById(id));
     }
 

@@ -21,7 +21,7 @@ public class ProcedimentosController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Procedimentos> findById(@PathVariable Long id) {
+    public ResponseEntity<Procedimentos> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(service.findById(id));
     }
 
