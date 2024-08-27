@@ -40,7 +40,6 @@ public class Animal implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_tutor")
-    @JsonBackReference
     private Tutor tutor;
 
     @Column(name = "castrado")

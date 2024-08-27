@@ -47,7 +47,7 @@ public class Tutor implements Serializable {
     @Column(name = "cpf")
     private String cpf;
 
-    @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Animal> animals;
 
