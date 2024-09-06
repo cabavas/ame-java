@@ -6,7 +6,6 @@ import com.lowagie.text.pdf.PdfWriter;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Service;
 
-import javax.print.Doc;
 import java.io.IOException;
 
 @Service
@@ -224,6 +223,5 @@ public class PDFGeneratorService {
                         "RG: " + atendimentoDTO.getAnimal().getTutor().getRg() + "           " +
                         "CPF: " + atendimentoDTO.getAnimal().getTutor().getCpf(), fontBody
         ));
-
     }
 }
