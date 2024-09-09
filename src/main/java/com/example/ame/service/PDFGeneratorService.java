@@ -155,7 +155,7 @@ public class PDFGeneratorService {
         document.close();
     }
 
-    public void exportWithData(AtendimentoDTO atendimentoDTO, HttpServletResponse response) throws IOException {
+    public void exportAtendimento(AtendimentoDTO atendimentoDTO, HttpServletResponse response) throws IOException {
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document, response.getOutputStream());
 
@@ -223,5 +223,9 @@ public class PDFGeneratorService {
                         "RG: " + atendimentoDTO.getAnimal().getTutor().getRg() + "           " +
                         "CPF: " + atendimentoDTO.getAnimal().getTutor().getCpf(), fontBody
         ));
+    }
+
+    private void exportCastracao( HttpServletResponse response) throws IOException {
+
     }
 }

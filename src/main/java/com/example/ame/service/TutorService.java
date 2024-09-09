@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TutorService {
@@ -25,6 +26,10 @@ public class TutorService {
 
     public Tutor save(Tutor tutor) {
         return repo.save(tutor);
+    }
+
+    public Tutor findByCpf(String cpf) {
+        return repo.findByCpf(cpf);
     }
 
 }

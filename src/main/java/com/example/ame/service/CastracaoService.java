@@ -20,4 +20,6 @@ public class CastracaoService {
     public Castracao save(Castracao castracao) {
         return repo.save(castracao);
     }
+
+    public Castracao findByProtocol(String protocol) {return repo.findByProtocol(protocol);}
 }

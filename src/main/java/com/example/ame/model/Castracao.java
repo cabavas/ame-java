@@ -21,17 +21,14 @@ public class Castracao implements Serializable {
     private String solicitCode;
 
     @Column(name = "id_tipo_paciente")
-    private String patientKind;
+    private String kindPatient;
 
     @Column(name = "nome_protetor")
     private String protectorName;
 
-    @OneToOne
-    @JoinColumn(name = "id_tutor")
-    private Tutor tutorId;
-
-    @Column(name = "id_clinica")
-    private String clinica;
+    @ManyToOne
+    @JoinColumn(name = "id_clinica")
+    private Clinica clinica;
 
     @Column(name = "data_cirurgia")
     private LocalDate surgeryDate;
@@ -39,9 +36,9 @@ public class Castracao implements Serializable {
     @Column(name = "status_cirurgia")
     private String surgeryStatus;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_animal")
-    private Animal animalId;
+    private Animal animal;
 
     @Column(name = "protocolo")
     private String protocol;
@@ -52,17 +49,16 @@ public class Castracao implements Serializable {
     public Castracao() {
     }
 
-    public Castracao(Integer id, LocalDate consultDate, String solicitCode, String patientKind, String protectorName, Tutor tutorId, String clinica, LocalDate surgeryDate, String surgeryStatus, Animal animalId, String protocol, String vetId) {
+    public Castracao(Integer id, LocalDate consultDate, String solicitCode, String kindPatient, String protectorName, Clinica clinica, LocalDate surgeryDate, String surgeryStatus, Animal animal, String protocol, String vetId) {
         this.id = id;
         this.consultDate = consultDate;
         this.solicitCode = solicitCode;
-        this.patientKind = patientKind;
+        this.kindPatient = kindPatient;
         this.protectorName = protectorName;
-        this.tutorId = tutorId;
         this.clinica = clinica;
         this.surgeryDate = surgeryDate;
         this.surgeryStatus = surgeryStatus;
-        this.animalId = animalId;
+        this.animal = animal;
         this.protocol = protocol;
         this.vetId = vetId;
     }
@@ -87,12 +83,12 @@ public class Castracao implements Serializable {
         this.solicitCode = solicitCode;
     }
 
-    public String getPatientKind() {
-        return patientKind;
+    public String getKindPatient() {
+        return kindPatient;
     }
 
-    public void setPatientKind(String patientKind) {
-        this.patientKind = patientKind;
+    public void setKindPatient(String kindPatient) {
+        this.kindPatient = kindPatient;
     }
 
     public String getProtectorName() {
@@ -103,19 +99,11 @@ public class Castracao implements Serializable {
         this.protectorName = protectorName;
     }
 
-    public Tutor getTutorId() {
-        return tutorId;
-    }
-
-    public void setTutorId(Tutor tutorId) {
-        this.tutorId = tutorId;
-    }
-
-    public String getClinica() {
+    public Clinica getClinica() {
         return clinica;
     }
 
-    public void setClinica(String clinica) {
+    public void setClinica(Clinica clinica) {
         this.clinica = clinica;
     }
 
@@ -135,12 +123,12 @@ public class Castracao implements Serializable {
         this.surgeryStatus = surgeryStatus;
     }
 
-    public Animal getAnimalId() {
-        return animalId;
+    public Animal getAnimal() {
+        return animal;
     }
 
-    public void setAnimalId(Animal animalId) {
-        this.animalId = animalId;
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
     }
 
     public String getProtocol() {
