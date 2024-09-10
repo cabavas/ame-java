@@ -1,5 +1,6 @@
 package com.example.ame.controller;
 
+import com.example.ame.model.Castracao;
 import com.example.ame.model.dto.AtendimentoDTO;
 import com.example.ame.service.PDFGeneratorService;
 import jakarta.servlet.http.HttpServletResponse;
@@ -27,6 +28,19 @@ public class PDFExportController {
         response.setHeader(headerKey, headerValue);
 
         this.pdfGeneratorService.exportAtendimento(atendimentoDTO, response);
+    }
+
+    @PostMapping("/pdf/generate/castracao")
+    public void generatePDFWithData(@RequestBody Castracao castracao, HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
+        String currentDate = String.valueOf(LocalDate.now());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=pdf_" + currentDate + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        this.pdfGeneratorService.exportCastracao(castracao, response);
+
     }
 
 }

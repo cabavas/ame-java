@@ -1,6 +1,5 @@
 package com.example.ame.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -63,11 +62,16 @@ public class Animal implements Serializable {
     @Column(name = "historico")
     private String history;
 
+    @Column(name = "anamnese")
+    private String anamnesis;
+
+    @Column(name = "tratamento")
+    private String treatment;
+
     public Animal() {
     }
 
-    public Animal(Integer id, String animalName, Integer age, String species, String breed, String sex, String fur, Float weight, String size, Tutor tutor, Boolean castrated, LocalDate castrationDate, Boolean vermifuged, LocalDate vermifugationDate, Boolean vaccinated, LocalDate vaccinationDate, String history) {
-        this.id = id;
+    public Animal(String animalName, Integer age, String species, String breed, String sex, String fur, Float weight, String size, Tutor tutor, Boolean castrated, LocalDate castrationDate, Boolean vermifuged, LocalDate vermifugationDate, Boolean vaccinated, LocalDate vaccinationDate, String history, String anamnesis, String treatment) {
         this.animalName = animalName;
         this.age = age;
         this.species = species;
@@ -84,6 +88,8 @@ public class Animal implements Serializable {
         this.vaccinated = vaccinated;
         this.vaccinationDate = vaccinationDate;
         this.history = history;
+        this.anamnesis = anamnesis;
+        this.treatment = this.treatment;
     }
 
     public Integer getId() {
@@ -216,5 +222,21 @@ public class Animal implements Serializable {
 
     public void setHistory(String history) {
         this.history = history;
+    }
+
+    public String getAnamnesis() {
+        return anamnesis;
+    }
+
+    public void setAnamnesis(String anamnesis) {
+        this.anamnesis = anamnesis;
+    }
+
+    public String getTreatment() {
+        return treatment;
+    }
+
+    public void setTreatment(String treatment) {
+        this.treatment = treatment;
     }
 }

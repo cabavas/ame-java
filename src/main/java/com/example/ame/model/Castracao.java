@@ -44,12 +44,12 @@ public class Castracao implements Serializable {
     private String protocol;
 
     @Column(name = "id_veterinario")
-    private String vetId;
+    private Integer vetId;
 
     public Castracao() {
     }
 
-    public Castracao(Integer id, LocalDate consultDate, String solicitCode, String kindPatient, String protectorName, Clinica clinica, LocalDate surgeryDate, String surgeryStatus, Animal animal, String protocol, String vetId) {
+    public Castracao(Integer id, LocalDate consultDate, String solicitCode, String kindPatient, String protectorName, Clinica clinica, LocalDate surgeryDate, String surgeryStatus, Animal animal, String protocol, Integer vetId) {
         this.id = id;
         this.consultDate = consultDate;
         this.solicitCode = solicitCode;
@@ -139,11 +139,11 @@ public class Castracao implements Serializable {
         this.protocol = protocol;
     }
 
-    public String getVetId() {
+    public Integer getVetId() {
         return vetId;
     }
 
-    public void setVetId(String vetId) {
+    public void setVetId(Integer vetId) {
         this.vetId = vetId;
     }
 }

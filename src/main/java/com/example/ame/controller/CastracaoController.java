@@ -81,6 +81,7 @@ public class CastracaoController {
         Castracao existingCastracao = service.findByProtocol(castracao.getProtocol());
         if(existingCastracao != null) {
             existingCastracao.setAnimal(animal);
+            existingCastracao.setSolicitCode(castracao.getSolicitCode());
             existingCastracao.setKindPatient(castracao.getKindPatient());
             existingCastracao.setClinica(clinica);
             existingCastracao.setConsultDate(castracao.getConsultDate());

@@ -1,5 +1,7 @@
 package com.example.ame.service;
 
+import com.example.ame.model.Animal;
+import com.example.ame.model.Castracao;
 import com.example.ame.model.dto.AtendimentoDTO;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfWriter;
@@ -51,7 +53,7 @@ public class PDFGeneratorService {
         Paragraph paragraph4 = new Paragraph(
                 "NOME: " + nome + "           " +
                         "ESPÉCIE: " + especie + "           " +
-                "RAÇA: " + raca, fontBody);
+                        "RAÇA: " + raca, fontBody);
         paragraph4.setAlignment(Paragraph.ALIGN_LEFT);
         paragraph4.setSpacingAfter(5);
         document.add(paragraph4);
@@ -64,7 +66,7 @@ public class PDFGeneratorService {
                 "IDADE: " + idade + "           " +
                         "COR: " + cor + "           " +
                         "PESO: " + peso + "KG" + "           " +
-                "PORTE: " + porte, fontBody
+                        "PORTE: " + porte, fontBody
         );
         paragraph5.setAlignment(Paragraph.ALIGN_LEFT);
         paragraph5.setSpacingAfter(5);
@@ -179,53 +181,100 @@ public class PDFGeneratorService {
         paragraph.setSpacingAfter(20);
         document.add(paragraph);
 
-        addAtendimentoDetails(document, atendimentoDTO, fontBody, fontTopic);
+        addAtendimentoDetail(document, atendimentoDTO, fontBody, fontTopic);
+
+        document.add(new Paragraph("3. TRIAGEM / HISTÓRICO", fontTopic));
+        document.add((new Paragraph(atendimentoDTO.getAnimal().getHistory())));
+
+        document.add(new Paragraph("4. ANAMNESE", fontTopic));
+        document.add((new Paragraph(atendimentoDTO.getAnimal().getAnamnesis())));
+
+        document.add(new Paragraph("5. TRATAMENTO / PRESCRIÇÕES", fontTopic));
+        document.add((new Paragraph(atendimentoDTO.getAnimal().getTreatment())));
 
         document.close();
     }
 
-    private void addAtendimentoDetails(Document document, AtendimentoDTO atendimentoDTO, Font fontBody, Font fontTopic) throws DocumentException {
+    private void addAtendimentoDetail(Document document, AtendimentoDTO atendimentoDTO, Font fontBody, Font fontTopic) throws DocumentException {
         // Adicione detalhes do atendimento ao documento
         Paragraph paragraph = new Paragraph("TIPO DE CONSULTA: " + atendimentoDTO.getConsultType(), fontBody);
         paragraph.setAlignment(Paragraph.ALIGN_LEFT);
         paragraph.setSpacingAfter(20);
         document.add(paragraph);
 
+        addDetails(document, atendimentoDTO.getAnimal(), fontBody, fontTopic);
+    }
+
+    private void addDetails(Document document, Animal animal, Font fontBody, Font fontTopic) throws DocumentException {
         // Dados do animal
         document.add(new Paragraph("1. DADOS DO ANIMAL", fontTopic));
         document.add(new Paragraph(
-                "NOME: " + atendimentoDTO.getAnimal().getAnimalName() + "           " +
-                        "ESPÉCIE: " + atendimentoDTO.getAnimal().getSpecies() + "           " +
-                        "RAÇA: " + atendimentoDTO.getAnimal().getBreed(), fontBody
+                "NOME: " + animal.getAnimalName() + "           " +
+                        "ESPÉCIE: " + animal.getSpecies() + "           " +
+                        "RAÇA: " + animal.getBreed(), fontBody
         ));
         document.add(new Paragraph(
-                "IDADE: " + atendimentoDTO.getAnimal().getAge() + "           " +
-                        "COR: " + atendimentoDTO.getAnimal().getFur() + "           " +
-                        "PESO: " + atendimentoDTO.getAnimal().getWeight() + "KG" + "           " +
-                        "PORTE: " + atendimentoDTO.getAnimal().getSize(), fontBody
+                "IDADE: " + animal.getAge() + "           " +
+                        "COR: " + animal.getFur() + "           " +
+                        "PESO: " + (animal.getWeight() == null ? "Não pesado" : animal.getWeight()  + " KG") + "           " +
+                        "PORTE: " + animal.getSize(), fontBody
         ));
 
         // Dados do proprietário
         document.add(new Paragraph("2. DADOS DO PROPRIETÁRIO", fontTopic));
         document.add(new Paragraph(
-                "NOME: " + atendimentoDTO.getAnimal().getTutor().getName() + "           " +
-                        "ENDEREÇO: " + atendimentoDTO.getAnimal().getTutor().getAddress() + "           " +
-                        "N°: " + atendimentoDTO.getAnimal().getTutor().getNumber(), fontBody
+                "NOME: " + animal.getTutor().getName() + "           " +
+                        "ENDEREÇO: " + animal.getTutor().getAddress() + "           " +
+                        "N°: " + animal.getTutor().getNumber(), fontBody
         ));
         document.add(new Paragraph(
-                "COMPLEMENTO: " + atendimentoDTO.getAnimal().getTutor().getComplement() + "           " +
-                        "BAIRRO: " + atendimentoDTO.getAnimal().getTutor().getNeighborhood() + "           " +
-                        "CIDADE: " + atendimentoDTO.getAnimal().getTutor().getCity() + "           " +
-                        "TELEFONE: " + atendimentoDTO.getAnimal().getTutor().getPhone(), fontBody
+                "COMPLEMENTO: " + animal.getTutor().getComplement() + "           " +
+                        "BAIRRO: " + animal.getTutor().getNeighborhood() + "           " +
+                        "CIDADE: " + animal.getTutor().getCity() + "           " +
+                        "TELEFONE: " + animal.getTutor().getPhone(), fontBody
         ));
         document.add(new Paragraph(
-                "WHATSAPP: " + atendimentoDTO.getAnimal().getTutor().getPhone() + "           " +
-                        "RG: " + atendimentoDTO.getAnimal().getTutor().getRg() + "           " +
-                        "CPF: " + atendimentoDTO.getAnimal().getTutor().getCpf(), fontBody
+                "WHATSAPP: " + animal.getTutor().getPhone() + "           " +
+                        "RG: " + animal.getTutor().getRg() + "           " +
+                        "CPF: " + animal.getTutor().getCpf(), fontBody
         ));
     }
 
-    private void exportCastracao( HttpServletResponse response) throws IOException {
+    public void exportCastracao(Castracao castracao, HttpServletResponse response) throws IOException {
+        Document document = new Document(PageSize.A4);
+        PdfWriter.getInstance(document, response.getOutputStream());
 
+        document.open();
+        Font fontTitle = FontFactory.getFont(FontFactory.TIMES_BOLD);
+        fontTitle.setSize(24);
+
+        Font fontBody = FontFactory.getFont(FontFactory.TIMES);
+        fontBody.setSize(14);
+
+        Font fontTopic = FontFactory.getFont(FontFactory.TIMES_BOLD);
+        fontTopic.setSize(14);
+
+        Image header = Image.getInstanceFromClasspath("header.png");
+        header.setAlignment(Image.ALIGN_MIDDLE);
+        header.scaleAbsoluteWidth(640);
+        document.add(header);
+
+        Paragraph paragraph = new Paragraph("FICHA DE CASTRAÇÃO", fontTitle);
+        paragraph.setAlignment(Paragraph.ALIGN_CENTER);
+        paragraph.setSpacingAfter(20);
+        document.add(paragraph);
+
+        addDetails(document, castracao.getAnimal(), fontBody, fontTopic);
+
+        // Dados do proprietário
+        document.add(new Paragraph("3. DADOS DA CLÍNICA", fontTopic));
+        document.add(new Paragraph(
+                "NOME DA CLÍNICA: " + castracao.getClinica().getName() + "           " +
+                        "ENDEREÇO: " + castracao.getClinica().getAddress() + "           " +
+                        "DATA DA CIRURGIA: " + castracao.getSurgeryDate() + "           " +
+                "STATUS DA CIRURGIA: " + castracao.getSurgeryStatus(), fontBody
+        ));
+
+        document.close();
     }
 }
