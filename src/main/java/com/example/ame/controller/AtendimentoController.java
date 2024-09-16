@@ -29,8 +29,12 @@ public class AtendimentoController {
     private AtendimentoService atendimentoService;
 
     @GetMapping
-    public ResponseEntity<List<Atendimento>> findAll() {
-        return ResponseEntity.ok(service.findAll());
+    public ResponseEntity<List<Atendimento>> findAll(@RequestParam(required = false) String cpf) {
+        if (cpf != null) {
+            return ResponseEntity.ok(service.findByTutorCpf(cpf));
+        } else {
+            return ResponseEntity.ok(service.findAll());
+        }
     }
 
     @GetMapping("/{id}")
@@ -58,8 +62,26 @@ public class AtendimentoController {
             atendimentoDTO.setAnimal(animal);
         }
 
-        // Converter AtendimentoDTO para Atendimento
-        Atendimento atendimento = new Atendimento();
+        // Verificar se o atendimento já existe (update)
+        Atendimento atendimento;
+        if (atendimentoDTO.getId() != null && service.findById(atendimentoDTO.getId()) != null) {
+            // Atualiza o atendimento existente
+            atendimento = service.findById(atendimentoDTO.getId());
+            setAtendimentoData(atendimentoDTO, atendimento);
+        } else {
+            // Converter AtendimentoDTO para Atendimento
+            atendimento = new Atendimento();
+            setAtendimentoData(atendimentoDTO, atendimento);
+        }
+        try {
+            Atendimento novoAtendimento = atendimentoService.save(atendimento);
+            return ResponseEntity.ok(novoAtendimento);
+        } catch (ChangeSetPersister.NotFoundException e) {
+            return ResponseEntity.status(404).body(null);
+        }
+    }
+
+    private void setAtendimentoData(@RequestBody AtendimentoDTO atendimentoDTO, Atendimento atendimento) {
         atendimento.setConsultType(atendimentoDTO.getConsultType());
         atendimento.setConsultDate(atendimentoDTO.getConsultDate());
         atendimento.setInitialTime(atendimentoDTO.getInitialTime());
@@ -69,12 +91,5 @@ public class AtendimentoController {
         atendimento.setEndTime(atendimentoDTO.getEndTime());
         atendimento.setProtocol(atendimentoDTO.getProtocol());
         atendimento.setVetId(atendimentoDTO.getVetId());
-
-        try {
-            Atendimento novoAtendimento = atendimentoService.save(atendimento);
-            return ResponseEntity.ok(novoAtendimento);
-        } catch (ChangeSetPersister.NotFoundException e) {
-            return ResponseEntity.status(404).body(null);
-        }
     }
 }

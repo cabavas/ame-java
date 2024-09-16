@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 public class AtendimentoDTO implements Serializable {
 
+    private Integer id;
     private Integer consultType;
     private String consultDate;
     private String initialTime;
@@ -29,6 +30,10 @@ public class AtendimentoDTO implements Serializable {
         this.endTime = endTime;
         this.protocol = protocol;
         this.vetId = vetId;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public Integer getConsultType() {

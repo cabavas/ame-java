@@ -8,6 +8,7 @@ import com.lowagie.text.pdf.PdfWriter;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 @Service
@@ -276,5 +277,46 @@ public class PDFGeneratorService {
         ));
 
         document.close();
+    }
+
+    public byte[] generatePDFBytes(Castracao castracao) throws IOException {
+        Document document = new Document(PageSize.A4);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PdfWriter.getInstance(document, outputStream);
+
+        document.open();
+        Font fontTitle = FontFactory.getFont(FontFactory.TIMES_BOLD);
+        fontTitle.setSize(24);
+
+        Font fontBody = FontFactory.getFont(FontFactory.TIMES);
+        fontBody.setSize(14);
+
+        Font fontTopic = FontFactory.getFont(FontFactory.TIMES_BOLD);
+        fontTopic.setSize(14);
+
+        Image header = Image.getInstanceFromClasspath("header.png");
+        header.setAlignment(Image.ALIGN_MIDDLE);
+        header.scaleAbsoluteWidth(640);
+        document.add(header);
+
+        Paragraph paragraph = new Paragraph("FICHA DE CASTRAÇÃO", fontTitle);
+        paragraph.setAlignment(Paragraph.ALIGN_CENTER);
+        paragraph.setSpacingAfter(20);
+        document.add(paragraph);
+
+        addDetails(document, castracao.getAnimal(), fontBody, fontTopic);
+
+        // Dados do proprietário
+        document.add(new Paragraph("3. DADOS DA CLÍNICA", fontTopic));
+        document.add(new Paragraph(
+                "NOME DA CLÍNICA: " + castracao.getClinica().getName() + "           " +
+                        "ENDEREÇO: " + castracao.getClinica().getAddress() + "           " +
+                        "DATA DA CIRURGIA: " + castracao.getSurgeryDate() + "           " +
+                        "STATUS DA CIRURGIA: " + castracao.getSurgeryStatus(), fontBody
+        ));
+
+        document.close();
+
+        return outputStream.toByteArray();
     }
 }

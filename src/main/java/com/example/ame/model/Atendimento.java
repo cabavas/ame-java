@@ -29,7 +29,7 @@ public class Atendimento implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_animal")
-    private Animal animalId;
+    private Animal animal;
 
     @Column(name = "hora_final")
     private String endTime;
@@ -43,13 +43,13 @@ public class Atendimento implements Serializable {
     public Atendimento() {
     }
 
-    public Atendimento(Integer consultType, String consultDate, String initialTime, Integer kindPatient, Integer solicitCode, Animal animalId, String endTime, String protocol, Integer vetId) {
+    public Atendimento(Integer consultType, String consultDate, String initialTime, Integer kindPatient, Integer solicitCode, Animal animal, String endTime, String protocol, Integer vetId) {
         this.consultType = consultType;
         this.consultDate = consultDate;
         this.initialTime = initialTime;
         this.kindPatient = kindPatient;
         this.solicitCode = solicitCode;
-        this.animalId = animalId;
+        this.animal = animal;
         this.endTime = endTime;
         this.protocol = protocol;
         this.vetId = vetId;
@@ -100,11 +100,11 @@ public class Atendimento implements Serializable {
     }
 
     public Animal getAnimal() {
-        return animalId;
+        return animal;
     }
 
     public void setAnimal(Animal animalId) {
-        this.animalId = animalId;
+        this.animal = animalId;
     }
 
     public String getEndTime() {

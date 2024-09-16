@@ -15,6 +15,8 @@ public class AtendimentoService {
 
     @Autowired
     private AtendimentoRepository repo;
+    @Autowired
+    private TutorService tutorService;
 
     @Autowired
     private AnimalRepository animalRepo;
@@ -33,6 +35,10 @@ public class AtendimentoService {
         atendimento.setAnimal(animal);
 
         return repo.save(atendimento);
+    }
+
+    public List<Atendimento> findByTutorCpf(String cpf) {
+        return repo.findByTutorCpf(cpf);
     }
 
 }
