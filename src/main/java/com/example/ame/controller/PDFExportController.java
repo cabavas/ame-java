@@ -50,7 +50,6 @@ public class PDFExportController {
     @PostMapping("/pdf/send")
     public void generatePDFAndSendEmail(@RequestBody Castracao castracao, @RequestParam String to) throws IOException, MessagingException {
         byte[] pdfBytes = pdfGeneratorService.generatePDFBytes(castracao);
-        System.out.println("========================" + to + "============================");
         emailService.sendEmailWithAttachment(
                 to,
                 "Confirmação de Castração",
