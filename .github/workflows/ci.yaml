@@ -17,7 +17,7 @@ jobs:
 
     steps:
       # utilizamos a action checkout para fazer o git clone no runner
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       # utilizamos a action setup-java para configurar a versão necessária do JDK
       - name: Set up JDK 17
