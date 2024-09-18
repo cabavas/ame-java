@@ -18,7 +18,7 @@ jobs:
       - name: Setting JDK
         uses: actions/setup-java@v4
         with:
-          distribution: "coretto"
+          distribution: "zulu"
           java-version: "17"
 
       - name: Build
