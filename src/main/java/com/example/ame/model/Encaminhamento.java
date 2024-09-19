@@ -20,18 +20,14 @@ public class Encaminhamento implements Serializable {
     private Integer solicitCode;
 
     @Column(name = "id_tipo_paciente")
-    private Integer patientKind;
+    private Integer kindPatient;
 
     @Column(name = "nome_protetor")
     private String protectorName;
 
     @OneToOne
-    @JoinColumn(name = "id_tutor")
-    private Tutor tutorId;
-
-    @OneToOne
     @JoinColumn(name = "id_animal")
-    private Animal animalId;
+    private Animal animal;
 
     @Column(name = "exam1")
     private String exam1;
@@ -42,20 +38,20 @@ public class Encaminhamento implements Serializable {
     @Column(name = "exam3")
     private String exam3;
 
-    @Column(name = "id_clinica")
-    private Integer clinic;
+    @ManyToOne
+    @JoinColumn(name = "id_clinica")
+    private Clinica clinic;
 
     public Encaminhamento() {
     }
 
-    public Encaminhamento(Integer id, LocalDate consultDate, Integer solicitCode, Integer patientKind, String protectorName, Tutor tutorId, Animal animalId, String exam1, String exam2, String exam3, Integer clinic) {
+    public Encaminhamento(Integer id, LocalDate consultDate, Integer solicitCode, Integer kindPatient, String protectorName, Animal animal, String exam1, String exam2, String exam3, Clinica clinic) {
         this.id = id;
         this.consultDate = consultDate;
         this.solicitCode = solicitCode;
-        this.patientKind = patientKind;
+        this.kindPatient = kindPatient;
         this.protectorName = protectorName;
-        this.tutorId = tutorId;
-        this.animalId = animalId;
+        this.animal = animal;
         this.exam1 = exam1;
         this.exam2 = exam2;
         this.exam3 = exam3;
@@ -82,12 +78,12 @@ public class Encaminhamento implements Serializable {
         this.solicitCode = solicitCode;
     }
 
-    public Integer getPatientKind() {
-        return patientKind;
+    public Integer getKindPatient() {
+        return kindPatient;
     }
 
-    public void setPatientKind(Integer patientKind) {
-        this.patientKind = patientKind;
+    public void setKindPatient(Integer kindPatient) {
+        this.kindPatient = kindPatient;
     }
 
     public String getProtectorName() {
@@ -98,20 +94,12 @@ public class Encaminhamento implements Serializable {
         this.protectorName = protectorName;
     }
 
-    public Tutor getTutorId() {
-        return tutorId;
+    public Animal getAnimal() {
+        return animal;
     }
 
-    public void setTutorId(Tutor tutorId) {
-        this.tutorId = tutorId;
-    }
-
-    public Animal getAnimalId() {
-        return animalId;
-    }
-
-    public void setAnimalId(Animal animalId) {
-        this.animalId = animalId;
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
     }
 
     public String getExam1() {
@@ -138,11 +126,11 @@ public class Encaminhamento implements Serializable {
         this.exam3 = exam3;
     }
 
-    public Integer getClinic() {
+    public Clinica getClinic() {
         return clinic;
     }
 
-    public void setClinic(Integer clinic) {
+    public void setClinic(Clinica clinic) {
         this.clinic = clinic;
     }
 }

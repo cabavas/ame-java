@@ -17,6 +17,10 @@ public class CastracaoService {
 
     public Castracao findById(Integer id) {return repo.findById(id).orElse(null);}
 
+    public List<Castracao> findByClinicaId(int id) {return repo.findByClinicaId(id);}
+
+    public List<Castracao> findByClinicaIdNot(int id) {return repo.findByClinicaIdNot(id);}
+
     public Castracao save(Castracao castracao) {
         return repo.save(castracao);
     }

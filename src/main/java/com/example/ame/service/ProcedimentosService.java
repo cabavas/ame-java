@@ -1,7 +1,7 @@
 package com.example.ame.service;
 
-import com.example.ame.model.Procedimentos;
-import com.example.ame.repository.ProcedimentosRepository;
+import com.example.ame.model.Procedimento;
+import com.example.ame.repository.ProcedimentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,18 +11,18 @@ import java.util.List;
 public class ProcedimentosService {
 
     @Autowired
-    private ProcedimentosRepository repo;
+    private ProcedimentoRepository repo;
 
-    public List<Procedimentos> findAll() {
+    public List<Procedimento> findAll() {
         return repo.findAll();
     }
 
-    public Procedimentos findById(Integer id) {
+    public Procedimento findById(Integer id) {
         return repo.findById(id).orElse(null);
     }
 
-    public Procedimentos save(Procedimentos procedimentos) {
-        return repo.save(procedimentos);
+    public Procedimento save(Procedimento procedimento) {
+        return repo.save(procedimento);
     }
 
 }

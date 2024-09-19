@@ -4,9 +4,7 @@ import com.example.ame.model.Animal;
 import com.example.ame.model.Castracao;
 import com.example.ame.model.Clinica;
 import com.example.ame.model.Tutor;
-import com.example.ame.repository.AnimalRepository;
 import com.example.ame.repository.ClinicaRepository;
-import com.example.ame.repository.TutorRepository;
 import com.example.ame.service.AnimalService;
 import com.example.ame.service.CastracaoService;
 import com.example.ame.service.ProtocoloService;
@@ -24,10 +22,6 @@ public class CastracaoController {
     @Autowired
     private CastracaoService service;
     @Autowired
-    private AnimalRepository animalRepository;
-    @Autowired
-    private TutorRepository tutorRepository;
-    @Autowired
     private ClinicaRepository clinicaRepository;
     @Autowired
     private ProtocoloService protocoloService;
@@ -37,8 +31,15 @@ public class CastracaoController {
     private AnimalService animalService;
 
     @GetMapping
-    public ResponseEntity<List<Castracao>> findAll() {
-        return ResponseEntity.ok(service.findAll());
+    public ResponseEntity<List<Castracao>> findAll(@RequestParam(value = "clinica", required = false, defaultValue = "0") Integer clinicaId) {
+        List<Castracao> castracoes;
+
+        if (clinicaId == 1) {
+            castracoes = service.findByClinicaId(1);
+        } else {
+            castracoes = service.findByClinicaIdNot(1);
+        }
+        return ResponseEntity.ok(castracoes);
     }
 
     @GetMapping("/{id}")
@@ -79,7 +80,7 @@ public class CastracaoController {
             return ResponseEntity.ok(service.save(castracao));
         }
         Castracao existingCastracao = service.findByProtocol(castracao.getProtocol());
-        if(existingCastracao != null) {
+        if (existingCastracao != null) {
             existingCastracao.setAnimal(animal);
             existingCastracao.setSolicitCode(castracao.getSolicitCode());
             existingCastracao.setKindPatient(castracao.getKindPatient());

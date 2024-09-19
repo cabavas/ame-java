@@ -55,7 +55,7 @@ public class Tutor implements Serializable {
     }
 
     public Tutor(Integer idTutor, String name, String address, Integer number, String complement, String neighborhood, String city, String phone, String whatsapp, String nis, String rg, String cpf, List<Animal> animals) {
-        this.idTutor = this.idTutor;
+        this.idTutor = idTutor;
         this.name = name;
         this.address = address;
         this.number = number;
