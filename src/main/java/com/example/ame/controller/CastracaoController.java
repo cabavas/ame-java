@@ -4,10 +4,11 @@ import com.example.ame.model.Animal;
 import com.example.ame.model.Castracao;
 import com.example.ame.model.Clinica;
 import com.example.ame.model.Tutor;
+import com.example.ame.model.dto.CastracaoDTO;
 import com.example.ame.repository.ClinicaRepository;
 import com.example.ame.service.AnimalService;
 import com.example.ame.service.CastracaoService;
-import com.example.ame.service.ProtocoloService;
+import com.example.ame.service.ClinicaService;
 import com.example.ame.service.TutorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,11 +25,11 @@ public class CastracaoController {
     @Autowired
     private ClinicaRepository clinicaRepository;
     @Autowired
-    private ProtocoloService protocoloService;
-    @Autowired
     private TutorService tutorService;
     @Autowired
     private AnimalService animalService;
+    @Autowired
+    private ClinicaService clinicaService;
 
     @GetMapping
     public ResponseEntity<List<Castracao>> findAll(@RequestParam(value = "clinica", required = false, defaultValue = "0") Integer clinicaId) {
@@ -48,49 +49,53 @@ public class CastracaoController {
     }
 
     @PostMapping
-    public ResponseEntity<Castracao> save(@RequestBody Castracao castracao) {
-        Tutor tutor = castracao.getAnimal().getTutor();
-        Tutor existingTutor = tutorService.findByCpf(tutor.getCpf());
-        if (existingTutor == null) {
-            tutor = tutorService.save(tutor);
+    public ResponseEntity<Castracao> save(@RequestBody CastracaoDTO castracaoDTO) {
+        Tutor tutor = castracaoDTO.getAnimal().getTutor();
+        if (tutor != null) {
+            if (tutor.getIdTutor() == null || tutorService.exists(tutor.getIdTutor())) {
+                tutor = tutorService.save(tutor);
+            }
+            castracaoDTO.getAnimal().setTutor(tutor);
+        }
+
+        Animal animal = castracaoDTO.getAnimal();
+        if (animal != null) {
+            if (animal.getId() == null || !animalService.exists(animal.getId())) {
+                animal = animalService.save(animal);
+            }
+            castracaoDTO.setAnimal(animal);
+        }
+
+        Clinica clinica = clinicaService.findById(castracaoDTO.getClinica().getId());
+        if (clinica != null) {
+            if (clinica.getId() == null || !clinicaService.exists(clinica.getId())) {
+                clinica = clinicaRepository.save(clinica);
+            }
+            castracaoDTO.setClinica(clinica);
+        }
+
+        Castracao castracao;
+        if (castracaoDTO.getId() != null && service.findById(castracaoDTO.getId()) != null) {
+            castracao = service.findById(castracaoDTO.getId());
+            setCastracaoData(castracaoDTO, castracao);
         } else {
-            tutor = existingTutor;
+            castracao = new Castracao();
+            setCastracaoData(castracaoDTO, castracao);
         }
+        Castracao novaCastracao = service.save(castracao);
+        return ResponseEntity.ok(novaCastracao);
+    }
 
-        Animal animal = castracao.getAnimal();
-        animal.setTutor(tutor);
-        Animal existingAnimal = animalService.findByAnimalNameAndTutor(animal.getAnimalName(), tutor);
-        if (existingAnimal == null) {
-            animal = animalService.save(animal);
-        } else {
-            animal = existingAnimal;
-        }
-
-        Clinica clinica = castracao.getClinica();
-        if (clinica.getId() == null) {
-            clinica = clinicaRepository.save(clinica);
-        }
-
-        castracao.setAnimal(animal);
-        castracao.setClinica(clinica);
-
-        if (castracao.getProtocol() == null || castracao.getProtocol().isEmpty()) {
-            String protocol = protocoloService.generateProtocol();
-            castracao.setProtocol(protocol);
-            return ResponseEntity.ok(service.save(castracao));
-        }
-        Castracao existingCastracao = service.findByProtocol(castracao.getProtocol());
-        if (existingCastracao != null) {
-            existingCastracao.setAnimal(animal);
-            existingCastracao.setSolicitCode(castracao.getSolicitCode());
-            existingCastracao.setKindPatient(castracao.getKindPatient());
-            existingCastracao.setClinica(clinica);
-            existingCastracao.setConsultDate(castracao.getConsultDate());
-            existingCastracao.setSurgeryDate(castracao.getSurgeryDate());
-            existingCastracao.setSurgeryStatus(castracao.getSurgeryStatus());
-            existingCastracao.setProtectorName(castracao.getProtectorName());
-            return ResponseEntity.ok(service.save(existingCastracao));
-        }
-        return ResponseEntity.ok(service.save(castracao));
+    private void setCastracaoData(@RequestBody CastracaoDTO castracaoDTO, Castracao castracao) {
+        castracao.setAnimal(castracaoDTO.getAnimal());
+        castracao.setSolicitCode(castracaoDTO.getSolicitCode().toString());
+        castracao.setKindPatient(castracaoDTO.getKindPatient().toString());
+        castracao.setClinica(clinicaService.findById(castracaoDTO.getClinica().getId()));
+        castracao.setConsultDate(castracaoDTO.getConsultDate());
+        castracao.setSurgeryDate(castracaoDTO.getSurgeryDate());
+        castracao.setSurgeryStatus(castracaoDTO.getSurgeryStatus());
+        castracao.setProtectorName(castracaoDTO.getProtectorName());
+        castracao.setVetId(castracaoDTO.getVetId());
+        castracao.setProtocol(castracaoDTO.getProtocol());
     }
 }

@@ -185,13 +185,25 @@ public class PDFGeneratorService {
         addAtendimentoDetail(document, atendimentoDTO, fontBody, fontTopic);
 
         document.add(new Paragraph("3. TRIAGEM / HISTÓRICO", fontTopic));
-        document.add((new Paragraph(atendimentoDTO.getAnimal().getHistory())));
+        if (atendimentoDTO.getAnimal().getHistory() != null && !atendimentoDTO.getAnimal().getHistory().isEmpty()) {
+            document.add((new Paragraph(atendimentoDTO.getAnimal().getHistory())));
+        } else {
+            document.add(new Paragraph("__________________________________________________________________________________________________________________________________________________________________________________________________________________________________________"));
+        }
 
         document.add(new Paragraph("4. ANAMNESE", fontTopic));
-        document.add((new Paragraph(atendimentoDTO.getAnimal().getAnamnesis())));
+        if (atendimentoDTO.getAnimal().getAnamnesis() != null && !atendimentoDTO.getAnimal().getAnamnesis().isEmpty()) {
+            document.add((new Paragraph(atendimentoDTO.getAnimal().getAnamnesis())));
+        } else {
+            document.add(new Paragraph("__________________________________________________________________________________________________________________________________________________________________________________________________________________________________________"));
+        }
 
         document.add(new Paragraph("5. TRATAMENTO / PRESCRIÇÕES", fontTopic));
-        document.add((new Paragraph(atendimentoDTO.getAnimal().getTreatment())));
+        if (atendimentoDTO.getAnimal().getTreatment() != null && !atendimentoDTO.getAnimal().getTreatment().isEmpty()) {
+            document.add((new Paragraph(atendimentoDTO.getAnimal().getTreatment())));
+        } else {
+            document.add(new Paragraph("__________________________________________________________________________________________________________________________________________________________________________________________________________________________________________"));
+        }
 
         document.close();
     }
@@ -217,7 +229,7 @@ public class PDFGeneratorService {
         document.add(new Paragraph(
                 "IDADE: " + animal.getAge() + "           " +
                         "COR: " + animal.getFur() + "           " +
-                        "PESO: " + (animal.getWeight() == null ? "Não pesado" : animal.getWeight()  + " KG") + "           " +
+                        "PESO: " + (animal.getWeight() == null ? "Não pesado" : animal.getWeight() + " KG") + "           " +
                         "PORTE: " + animal.getSize(), fontBody
         ));
 
@@ -273,7 +285,7 @@ public class PDFGeneratorService {
                 "NOME DA CLÍNICA: " + castracao.getClinica().getName() + "           " +
                         "ENDEREÇO: " + castracao.getClinica().getAddress() + "           " +
                         "DATA DA CIRURGIA: " + castracao.getSurgeryDate() + "           " +
-                "STATUS DA CIRURGIA: " + castracao.getSurgeryStatus(), fontBody
+                        "STATUS DA CIRURGIA: " + castracao.getSurgeryStatus(), fontBody
         ));
 
         document.close();

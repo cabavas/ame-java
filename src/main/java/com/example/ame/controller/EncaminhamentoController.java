@@ -38,7 +38,7 @@ public class EncaminhamentoController {
 
         Tutor tutor = encaminhamento.getAnimal().getTutor();
         if (tutor != null) {
-            if (tutor.getIdTutor() == null || !tutorService.exists(tutor.getIdTutor())) {
+            if (tutor.getIdTutor() == null || tutorService.exists(tutor.getIdTutor())) {
                 tutor = tutorService.save(tutor);
             }
             encaminhamento.getAnimal().setTutor(tutor);

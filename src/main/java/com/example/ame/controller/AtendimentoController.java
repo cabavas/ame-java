@@ -47,7 +47,7 @@ public class AtendimentoController {
         // Verificar e criar tutor se necessário
         Tutor tutor = atendimentoDTO.getAnimal().getTutor();
         if (tutor != null) {
-            if (tutor.getIdTutor() == null || !tutorService.exists(tutor.getIdTutor())) {
+            if (tutor.getIdTutor() == null || tutorService.exists(tutor.getIdTutor())) {
                 tutor = tutorService.save(tutor);
             }
             atendimentoDTO.getAnimal().setTutor(tutor);
@@ -77,7 +77,7 @@ public class AtendimentoController {
             Atendimento novoAtendimento = atendimentoService.save(atendimento);
             return ResponseEntity.ok(novoAtendimento);
         } catch (ChangeSetPersister.NotFoundException e) {
-            return ResponseEntity.status(404).body(null);
+            return ResponseEntity.notFound().build();
         }
     }
 
