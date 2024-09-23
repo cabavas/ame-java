@@ -17,12 +17,8 @@ public class Procedimento implements Serializable {
     private String protectorName;
 
     @OneToOne
-    @JoinColumn(name = "id_tutor")
-    private Tutor tutorId;
-
-    @OneToOne
     @JoinColumn(name = "id_procedimento")
-    private Animal animalId;
+    private Animal animal;
 
     @Column(name = "id_procedimento1")
     private String procedure1;
@@ -34,13 +30,10 @@ public class Procedimento implements Serializable {
     private String observations;
 
     @Column(name = "data_agendamento")
-    private String scheduleDate;
+    private String appointmentDate;
 
     @Column(name = "status_atendimento")
-    private String consultStatus;
-
-    @Column(name = "protocolo")
-    private String protocol;
+    private String appointmentStatus;
 
     @Column(name = "data_atendimento")
     private String consultDate;
@@ -49,25 +42,23 @@ public class Procedimento implements Serializable {
     private String solicitCode;
 
     @Column(name = "id_tipo_paciente")
-    private String patientKind;
+    private String kindPatient;
 
     public Procedimento() {
     }
 
-    public Procedimento(Integer id, String protectorName, Tutor tutorId, Animal animalId, String procedure1, String procedure2, String observations, String scheduleDate, String consultStatus, String protocol, String consultDate, String solicitCode, String patientKind) {
+    public Procedimento(Integer id, String protectorName, Animal animal, String procedure1, String procedure2, String observations, String appointmentDate, String consultStatus, String consultDate, String solicitCode, String kindPatient) {
         this.id = id;
-        this.protectorName = protectorName;
-        this.tutorId = tutorId;
-        this.animalId = animalId;
+        this.appointmentDate = appointmentDate;
+        this.appointmentStatus = consultStatus;
+        this.consultDate = consultDate;
+        this.kindPatient = kindPatient;
+        this.observations = observations;
         this.procedure1 = procedure1;
         this.procedure2 = procedure2;
-        this.observations = observations;
-        this.scheduleDate = scheduleDate;
-        this.consultStatus = consultStatus;
-        this.protocol = protocol;
-        this.consultDate = consultDate;
+        this.protectorName = protectorName;
         this.solicitCode = solicitCode;
-        this.patientKind = patientKind;
+        this.animal = animal;
     }
 
     public Integer getId() {
@@ -82,20 +73,12 @@ public class Procedimento implements Serializable {
         this.protectorName = protectorName;
     }
 
-    public Tutor getTutorId() {
-        return tutorId;
+    public Animal getAnimal() {
+        return animal;
     }
 
-    public void setTutorId(Tutor tutorId) {
-        this.tutorId = tutorId;
-    }
-
-    public Animal getAnimalId() {
-        return animalId;
-    }
-
-    public void setAnimalId(Animal animalId) {
-        this.animalId = animalId;
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
     }
 
     public String getProcedure1() {
@@ -122,28 +105,20 @@ public class Procedimento implements Serializable {
         this.observations = observations;
     }
 
-    public String getScheduleDate() {
-        return scheduleDate;
+    public String getAppointmentDate() {
+        return appointmentDate;
     }
 
-    public void setScheduleDate(String scheduleDate) {
-        this.scheduleDate = scheduleDate;
+    public void setAppointmentDate(String appointmentDate) {
+        this.appointmentDate = appointmentDate;
     }
 
-    public String getConsultStatus() {
-        return consultStatus;
+    public String getAppointmentStatus() {
+        return appointmentStatus;
     }
 
-    public void setConsultStatus(String consultStatus) {
-        this.consultStatus = consultStatus;
-    }
-
-    public String getProtocol() {
-        return protocol;
-    }
-
-    public void setProtocol(String protocol) {
-        this.protocol = protocol;
+    public void setAppointmentStatus(String appointmentStatus) {
+        this.appointmentStatus = appointmentStatus;
     }
 
     public String getConsultDate() {
@@ -162,11 +137,11 @@ public class Procedimento implements Serializable {
         this.solicitCode = solicitCode;
     }
 
-    public String getPatientKind() {
-        return patientKind;
+    public String getKindPatient() {
+        return kindPatient;
     }
 
-    public void setPatientKind(String patientKind) {
-        this.patientKind = patientKind;
+    public void setKindPatient(String kindPatient) {
+        this.kindPatient = kindPatient;
     }
 }

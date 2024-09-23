@@ -44,34 +44,33 @@ public class AtendimentoController {
 
     @PostMapping
     public ResponseEntity<Atendimento> save(@RequestBody AtendimentoDTO atendimentoDTO) {
-        // Verificar e criar tutor se necessário
         Tutor tutor = atendimentoDTO.getAnimal().getTutor();
         if (tutor != null) {
-            if (tutor.getIdTutor() == null || tutorService.exists(tutor.getIdTutor())) {
+            if (tutor.getIdTutor() == null || !tutorService.exists(tutor.getIdTutor())) {
                 tutor = tutorService.save(tutor);
+            } else {
+                tutor = tutorService.findById(tutor.getIdTutor());
             }
             atendimentoDTO.getAnimal().setTutor(tutor);
         }
 
-        // Verificar e criar animal se necessário
         Animal animal = atendimentoDTO.getAnimal();
         if (animal != null) {
             if (animal.getId() == null || !animalService.exists(animal.getId())) {
                 animal = animalService.save(animal);
+            } else {
+                animal = animalService.findById(animal.getId());
             }
             atendimentoDTO.setAnimal(animal);
         }
 
-        // Verificar se o atendimento já existe (update)
         Atendimento atendimento;
         if (atendimentoDTO.getId() != null && service.findById(atendimentoDTO.getId()) != null) {
-            // Atualiza o atendimento existente
             atendimento = service.findById(atendimentoDTO.getId());
-            setAtendimentoData(atendimentoDTO, atendimento);
+            setData(atendimentoDTO, atendimento);
         } else {
-            // Converter AtendimentoDTO para Atendimento
             atendimento = new Atendimento();
-            setAtendimentoData(atendimentoDTO, atendimento);
+            setData(atendimentoDTO, atendimento);
         }
         try {
             Atendimento novoAtendimento = atendimentoService.save(atendimento);
@@ -81,7 +80,7 @@ public class AtendimentoController {
         }
     }
 
-    private void setAtendimentoData(@RequestBody AtendimentoDTO atendimentoDTO, Atendimento atendimento) {
+    private void setData(@RequestBody AtendimentoDTO atendimentoDTO, Atendimento atendimento) {
         atendimento.setConsultType(atendimentoDTO.getConsultType());
         atendimento.setConsultDate(atendimentoDTO.getConsultDate());
         atendimento.setInitialTime(atendimentoDTO.getInitialTime());
