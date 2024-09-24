@@ -1,7 +1,9 @@
 package com.example.ame.controller;
 
 import com.example.ame.model.Castracao;
+import com.example.ame.model.Encaminhamento;
 import com.example.ame.model.dto.AtendimentoDTO;
+import com.example.ame.model.dto.ComparecimentoDTO;
 import com.example.ame.service.EmailService;
 import com.example.ame.service.PDFGeneratorService;
 import jakarta.mail.MessagingException;
@@ -22,6 +24,30 @@ public class PDFExportController {
     private PDFGeneratorService pdfGeneratorService;
     @Autowired
     private EmailService emailService;
+
+    @PostMapping("/pdf/generate/comparecimento")
+    public void generateComparecimento(@RequestBody ComparecimentoDTO dto, HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
+        String currentDate = String.valueOf(LocalDate.now());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=pdf_"  + currentDate + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        this.pdfGeneratorService.exportComparecimento(dto, response);
+    }
+
+    @PostMapping("/pdf/generate/encaminhamento")
+    public void generatePDFWithData(@RequestBody Encaminhamento encaminhamento, HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
+        String currentDate = String.valueOf(LocalDate.now());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=pdf_"  + currentDate + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        this.pdfGeneratorService.exportEncaminhamento(encaminhamento, response);
+    }
 
     @PostMapping("/pdf/generate/atendimento")
     public void generatePDFWithData(@RequestBody AtendimentoDTO atendimentoDTO, HttpServletResponse response) throws IOException {

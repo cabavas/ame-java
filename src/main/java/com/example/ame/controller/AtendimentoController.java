@@ -46,6 +46,7 @@ public class AtendimentoController {
     public ResponseEntity<Atendimento> save(@RequestBody AtendimentoDTO atendimentoDTO) {
         Tutor tutor = atendimentoDTO.getAnimal().getTutor();
         if (tutor != null) {
+            tutor = tutorService.findByCpf(tutor.getCpf());
             if (tutor.getIdTutor() == null || !tutorService.exists(tutor.getIdTutor())) {
                 tutor = tutorService.save(tutor);
             } else {
@@ -56,6 +57,7 @@ public class AtendimentoController {
 
         Animal animal = atendimentoDTO.getAnimal();
         if (animal != null) {
+            animal = animalService.findByAnimalNameAndTutor(animal.getAnimalName(), tutor);
             if (animal.getId() == null || !animalService.exists(animal.getId())) {
                 animal = animalService.save(animal);
             } else {

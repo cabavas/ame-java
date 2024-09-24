@@ -239,4 +239,29 @@ public class Animal implements Serializable {
     public void setTreatment(String treatment) {
         this.treatment = treatment;
     }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "id=" + id +
+                ", animalName='" + animalName + '\'' +
+                ", age=" + age +
+                ", species='" + species + '\'' +
+                ", breed='" + breed + '\'' +
+                ", sex='" + sex + '\'' +
+                ", fur='" + fur + '\'' +
+                ", weight=" + weight +
+                ", size='" + size + '\'' +
+                ", tutor=" + tutor +
+                ", castrated=" + castrated +
+                ", castrationDate=" + castrationDate +
+                ", vermifuged=" + vermifuged +
+                ", vermifugationDate=" + vermifugationDate +
+                ", vaccinated=" + vaccinated +
+                ", vaccinationDate=" + vaccinationDate +
+                ", history='" + history + '\'' +
+                ", anamnesis='" + anamnesis + '\'' +
+                ", treatment='" + treatment + '\'' +
+                '}';
+    }
 }

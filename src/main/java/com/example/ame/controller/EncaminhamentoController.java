@@ -38,6 +38,7 @@ public class EncaminhamentoController {
 
         Tutor tutor = encaminhamento.getAnimal().getTutor();
         if (tutor != null) {
+            tutor = tutorService.findByCpf(tutor.getCpf());
             if (tutor.getIdTutor() == null || tutorService.exists(tutor.getIdTutor())) {
                 tutor = tutorService.save(tutor);
             }
@@ -46,6 +47,7 @@ public class EncaminhamentoController {
 
         Animal animal = encaminhamento.getAnimal();
         if (animal != null) {
+            animal = animalService.findByAnimalNameAndTutor(animal.getAnimalName(), tutor);
             if (animal.getId() == null || !animalService.exists(animal.getId())) {
                 animal = animalService.save(animal);
             }

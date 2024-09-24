@@ -42,11 +42,16 @@ public class Encaminhamento implements Serializable {
     @JoinColumn(name = "id_clinica")
     private Clinica clinic;
 
+    @Column(name = "status_agendamento")
+    private String appointmentStatus;
+
+    @Column(name = "data_agendamento")
+    private LocalDate appointmentDate;
+
     public Encaminhamento() {
     }
 
-    public Encaminhamento(Integer id, LocalDate consultDate, Integer solicitCode, Integer kindPatient, String protectorName, Animal animal, String exam1, String exam2, String exam3, Clinica clinic) {
-        this.id = id;
+    public Encaminhamento(LocalDate consultDate, Integer solicitCode, Integer kindPatient, String protectorName, Animal animal, String exam1, String exam2, String exam3, Clinica clinic, String appointmentStatus, LocalDate appointmentDate) {
         this.consultDate = consultDate;
         this.solicitCode = solicitCode;
         this.kindPatient = kindPatient;
@@ -56,6 +61,8 @@ public class Encaminhamento implements Serializable {
         this.exam2 = exam2;
         this.exam3 = exam3;
         this.clinic = clinic;
+        this.appointmentStatus = appointmentStatus;
+        this.appointmentDate = appointmentDate;
     }
 
     public Integer getId() {
@@ -132,5 +139,39 @@ public class Encaminhamento implements Serializable {
 
     public void setClinic(Clinica clinic) {
         this.clinic = clinic;
+    }
+
+    public String getAppointmentStatus() {
+        return appointmentStatus;
+    }
+
+    public void setAppointmentStatus(String appointmentStatus) {
+        this.appointmentStatus = appointmentStatus;
+    }
+
+    public LocalDate getAppointmentDate() {
+        return appointmentDate;
+    }
+
+    public void setAppointmentDate(LocalDate appointmentDate) {
+        this.appointmentDate = appointmentDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Encaminhamento{" +
+                "id=" + id +
+                ", consultDate=" + consultDate +
+                ", solicitCode=" + solicitCode +
+                ", kindPatient=" + kindPatient +
+                ", protectorName='" + protectorName + '\'' +
+                ", animal=" + animal +
+                ", exam1='" + exam1 + '\'' +
+                ", exam2='" + exam2 + '\'' +
+                ", exam3='" + exam3 + '\'' +
+                ", clinic=" + clinic +
+                ", appointmentStatus='" + appointmentStatus + '\'' +
+                ", appointmentDate=" + appointmentDate +
+                '}';
     }
 }

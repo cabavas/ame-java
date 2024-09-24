@@ -165,4 +165,23 @@ public class Tutor implements Serializable {
     public List<Animal> getAnimals() {
         return animals;
     }
+
+    @Override
+    public String toString() {
+        return "Tutor{" +
+                "idTutor=" + idTutor +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", number=" + number +
+                ", complement='" + complement + '\'' +
+                ", neighborhood='" + neighborhood + '\'' +
+                ", city='" + city + '\'' +
+                ", phone='" + phone + '\'' +
+                ", whatsapp='" + whatsapp + '\'' +
+                ", nis='" + nis + '\'' +
+                ", rg='" + rg + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", animals=" + animals +
+                '}';
+    }
 }

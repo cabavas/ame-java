@@ -37,6 +37,7 @@ public class ProcedimentoController {
     public ResponseEntity<Procedimento> save(@RequestBody Procedimento procedimentoData) {
         Tutor tutor = procedimentoData.getAnimal().getTutor();
         if(tutor != null) {
+            tutor = tutorService.findByCpf(tutor.getCpf());
             if(tutor.getIdTutor() == null || !tutorService.exists(tutor.getIdTutor())) {
                 tutor = tutorService.save(tutor);
             } else {
@@ -47,6 +48,7 @@ public class ProcedimentoController {
 
         Animal animal = procedimentoData.getAnimal();
         if (animal != null) {
+            animal = animalService.findByAnimalNameAndTutor(animal.getAnimalName(), tutor);
             if (animal.getId() == null || !animalService.exists(animal.getId())) {
                 animal = animalService.save(animal);
             } else {
