@@ -4,6 +4,7 @@ import com.example.ame.model.Castracao;
 import com.example.ame.model.Encaminhamento;
 import com.example.ame.model.dto.AtendimentoDTO;
 import com.example.ame.model.dto.ComparecimentoDTO;
+import com.example.ame.model.dto.ProcedimentoDTO;
 import com.example.ame.service.EmailService;
 import com.example.ame.service.PDFGeneratorService;
 import jakarta.mail.MessagingException;
@@ -24,6 +25,18 @@ public class PDFExportController {
     private PDFGeneratorService pdfGeneratorService;
     @Autowired
     private EmailService emailService;
+
+    @PostMapping("/pdf/generate/procedimento")
+    public void generateProcedimento(@RequestBody ProcedimentoDTO dto, HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
+        String currentDate = String.valueOf(LocalDate.now());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=pdf_"  + currentDate + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        this.pdfGeneratorService.exportProcedimento(dto, response);
+    }
 
     @PostMapping("/pdf/generate/comparecimento")
     public void generateComparecimento(@RequestBody ComparecimentoDTO dto, HttpServletResponse response) throws IOException {

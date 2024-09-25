@@ -6,13 +6,13 @@ import com.example.ame.model.Clinica;
 import com.example.ame.model.Encaminhamento;
 import com.example.ame.model.dto.AtendimentoDTO;
 import com.example.ame.model.dto.ComparecimentoDTO;
+import com.example.ame.model.dto.ProcedimentoDTO;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfWriter;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.xml.crypto.Data;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
@@ -21,6 +21,61 @@ public class PDFGeneratorService {
 
     @Autowired
     private ClinicaService clinicaService;
+    @Autowired
+    private TipoProcedimentoService tipoProcedimentoService;
+
+    public void exportProcedimento(ProcedimentoDTO dto, HttpServletResponse response) throws IOException {
+        Document document = new Document(PageSize.A4);
+        PdfWriter.getInstance(document, response.getOutputStream());
+
+        document.open();
+
+        Paragraph spacingAfter = new Paragraph();
+        spacingAfter.setSpacingAfter(20);
+
+        Font fontTitle = FontFactory.getFont(FontFactory.TIMES_BOLD);
+        fontTitle.setSize(24);
+
+        Font fontBody = FontFactory.getFont(FontFactory.TIMES);
+        fontBody.setSize(14);
+
+        Font fontTopic = FontFactory.getFont(FontFactory.TIMES_BOLD);
+        fontTopic.setSize(14);
+
+        Image header = Image.getInstanceFromClasspath("header.png");
+        header.setAlignment(Image.ALIGN_MIDDLE);
+        header.scaleAbsoluteWidth(640);
+        document.add(header);
+
+        Paragraph paragraph = new Paragraph("FICHA DE PROCEDIMENTOS DIVERSOS", fontTitle);
+        paragraph.setAlignment(Paragraph.ALIGN_CENTER);
+        paragraph.setSpacingBefore(30);
+        paragraph.setSpacingAfter(40);
+        document.add(paragraph);
+
+        addAnimalDetails(document, dto.getAnimal(), fontBody, fontTopic);
+
+        document.add(spacingAfter);
+        document.add(new Paragraph("3. PROCEDIMENTOS", fontTopic));
+        if (dto.getProcedure1() != null && dto.getProcedure1() > 0) {
+            String procedure1Name = tipoProcedimentoService.findNomeById(dto.getProcedure1());
+            document.add(new Paragraph("PROCEDIMENTO 1: " + procedure1Name));
+        }
+        if (dto.getProcedure2() != null && dto.getProcedure2() > 0) {
+            String procedure2Name = tipoProcedimentoService.findNomeById(dto.getProcedure2());
+            document.add(new Paragraph("PROCEDIMENTO 2: " + procedure2Name));
+        }
+
+        document.add(spacingAfter);
+
+        document.add(new Paragraph("4. OBSERVAÇÕES", fontTopic));
+        document.add(new Paragraph(dto.getObservations()));
+        document.add(spacingAfter);
+        document.add(new Paragraph("DATA DO AGENDAMENTO: " + dto.getAppointmentDate()));
+        document.add(new Paragraph("STATUS DO ATENDIMENTO: " + dto.getAppointmentStatus()));
+
+        document.close();
+    }
 
     public void exportComparecimento(ComparecimentoDTO dto, HttpServletResponse response) throws IOException {
         Document document = new Document(PageSize.A4);
@@ -50,7 +105,7 @@ public class PDFGeneratorService {
         document.add(new Paragraph(
                 "Declaramos para os devidos fins trabalhistas, que o(a) Sr(a): " + dto.getProtectorName() +
                         " compareceu a AME Animal - PREFEITURA DE CARUARU neste dia, no horário das " + dto.getBeginTime() +
-                        "hs às " +  dto.getEndTime() + "hs, ficando impossibilitado de comparecer para as suas atividades."
+                        "hs às " + dto.getEndTime() + "hs, ficando impossibilitado de comparecer para as suas atividades."
         ));
 
         Paragraph date = new Paragraph("Caruaru, ______ de _______________ de ______");
@@ -98,13 +153,13 @@ public class PDFGeneratorService {
         addAnimalDetails(document, encaminhamento.getAnimal(), fontBody, fontTopic);
 
         document.add(new Paragraph("3. EXAMES", fontTopic));
-        if(encaminhamento.getExam1() != null && !encaminhamento.getExam1().isEmpty()){
+        if (encaminhamento.getExam1() != null && !encaminhamento.getExam1().isEmpty()) {
             document.add((new Paragraph("Exame 1: " + encaminhamento.getExam1(), fontBody)));
         }
-        if(encaminhamento.getExam2() != null && !encaminhamento.getExam2().isEmpty()){
+        if (encaminhamento.getExam2() != null && !encaminhamento.getExam2().isEmpty()) {
             document.add((new Paragraph("Exame 2: " + encaminhamento.getExam2(), fontBody)));
         }
-        if(encaminhamento.getExam3() != null && !encaminhamento.getExam3().isEmpty()){
+        if (encaminhamento.getExam3() != null && !encaminhamento.getExam3().isEmpty()) {
             document.add((new Paragraph("Exame 3: " + encaminhamento.getExam3(), fontBody)));
         }
 
@@ -183,13 +238,16 @@ public class PDFGeneratorService {
     }
 
     private void addAnimalDetails(Document document, Animal animal, Font fontBody, Font fontTopic) throws DocumentException {
-        // Dados do animal
+        Paragraph spacing = new Paragraph();
+        spacing.setSpacingAfter(20);
+
         document.add(new Paragraph("1. DADOS DO ANIMAL", fontTopic));
         document.add(new Paragraph(
                 "NOME: " + animal.getAnimalName() + "           " +
                         "ESPÉCIE: " + animal.getSpecies() + "           " +
                         "RAÇA: " + animal.getBreed(), fontBody
         ));
+
         document.add(new Paragraph(
                 "IDADE: " + animal.getAge() + "           " +
                         "COR: " + animal.getFur() + "           " +
@@ -197,7 +255,8 @@ public class PDFGeneratorService {
                         "PORTE: " + animal.getSize(), fontBody
         ));
 
-        // Dados do proprietário
+        document.add(spacing);
+
         document.add(new Paragraph("2. DADOS DO PROPRIETÁRIO", fontTopic));
         document.add(new Paragraph(
                 "NOME: " + animal.getTutor().getName() + "           " +
