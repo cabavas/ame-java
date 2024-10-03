@@ -44,26 +44,28 @@ public class AtendimentoController {
 
     @PostMapping
     public ResponseEntity<Atendimento> save(@RequestBody AtendimentoDTO atendimentoDTO) {
-        Tutor tutor = atendimentoDTO.getAnimal().getTutor();
-        if (tutor != null) {
-            tutor = tutorService.findByCpf(tutor.getCpf());
-            if (tutor.getIdTutor() == null || !tutorService.exists(tutor.getIdTutor())) {
-                tutor = tutorService.save(tutor);
-            } else {
-                tutor = tutorService.findById(tutor.getIdTutor());
+        Tutor tutorData = atendimentoDTO.getAnimal().getTutor();
+        if (tutorData != null) {
+            Tutor tutor = tutorService.findByCpf(tutorData.getCpf());
+            if (tutor == null) {
+                tutorData = tutorService.save(tutorData);
+            } else if (tutorData.getIdTutor() != null){
+                tutorData = tutorService.findById(tutorData.getIdTutor());
             }
-            atendimentoDTO.getAnimal().setTutor(tutor);
+            tutorData = tutorService.save(tutorData);
+            atendimentoDTO.getAnimal().setTutor(tutorData);
         }
 
-        Animal animal = atendimentoDTO.getAnimal();
-        if (animal != null) {
-            animal = animalService.findByAnimalNameAndTutor(animal.getAnimalName(), tutor);
-            if (animal.getId() == null || !animalService.exists(animal.getId())) {
-                animal = animalService.save(animal);
+        Animal animalData = atendimentoDTO.getAnimal();
+        if (animalData != null) {
+            Animal animal = animalService.findByAnimalNameAndTutor(animalData.getAnimalName(), atendimentoDTO.getAnimal().getTutor());
+            if (animal == null) {
+                animalData = animalService.save(animalData);
             } else {
-                animal = animalService.findById(animal.getId());
+                animalData = animalService.findById(animalData.getId());
             }
-            atendimentoDTO.setAnimal(animal);
+            animalData = animalService.save(animalData);
+            atendimentoDTO.setAnimal(animalData);
         }
 
         Atendimento atendimento;

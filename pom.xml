@@ -11,7 +11,7 @@
     <groupId>com.example</groupId>
     <artifactId>ame</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <protectorName>ame</protectorName>
+    <name>ame</name>
     <description>Demo project for Spring Boot</description>
     <url/>
     <licenses>
