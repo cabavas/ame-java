@@ -50,22 +50,28 @@ public class CastracaoController {
 
     @PostMapping
     public ResponseEntity<Castracao> save(@RequestBody CastracaoDTO castracaoDTO) {
-        Tutor tutor = castracaoDTO.getAnimal().getTutor();
-        if (tutor != null) {
-            tutor = tutorService.findByCpf(tutor.getCpf());
-            if (tutor.getIdTutor() == null || tutorService.exists(tutor.getIdTutor())) {
-                tutor = tutorService.save(tutor);
+        Tutor tutorData = castracaoDTO.getAnimal().getTutor();
+        if (tutorData != null) {
+            Tutor tutor = tutorService.findByCpf(tutorData.getCpf());
+            if (tutor == null) {
+                tutorData = tutorService.save(tutorData);
+            } else if (tutorData.getIdTutor() != null){
+                tutorData = tutorService.findById(tutorData.getIdTutor());
             }
-            castracaoDTO.getAnimal().setTutor(tutor);
+            tutorData = tutorService.save(tutorData);
+            castracaoDTO.getAnimal().setTutor(tutorData);
         }
 
-        Animal animal = castracaoDTO.getAnimal();
-        if (animal != null) {
-            animal = animalService.findByAnimalNameAndTutor(animal.getAnimalName(), tutor);
-            if (animal.getId() == null || !animalService.exists(animal.getId())) {
-                animal = animalService.save(animal);
+        Animal animalData = castracaoDTO.getAnimal();
+        if (animalData != null) {
+            Animal animal = animalService.findByAnimalNameAndTutor(animalData.getAnimalName(), castracaoDTO.getAnimal().getTutor());
+            if (animal == null) {
+                animalData = animalService.save(animalData);
+            } else {
+                animalData = animalService.findById(animalData.getId());
             }
-            castracaoDTO.setAnimal(animal);
+            animalData = animalService.save(animalData);
+            castracaoDTO.setAnimal(animalData);
         }
 
         Clinica clinica = clinicaService.findById(castracaoDTO.getClinica().getId());
