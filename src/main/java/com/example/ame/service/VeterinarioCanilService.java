@@ -1,7 +1,7 @@
 package com.example.ame.service;
 
-import com.example.ame.model.Tutor;
-import com.example.ame.repository.TutorRepository;
+import com.example.ame.model.VeterinarioCanil;
+import com.example.ame.repository.VeterinarioCanilRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,18 +11,18 @@ import java.util.List;
 public class VeterinarioCanilService {
 
     @Autowired
-    private TutorRepository repo;
+    private VeterinarioCanilRepository repo;
 
-    public List<Tutor> findAll() {
+    public List<VeterinarioCanil> findAll() {
         return repo.findAll();
     }
 
-    public Tutor getTutorById(Integer id) {
+    public VeterinarioCanil findById(Integer id) {
         return repo.findById(id).orElse(null);
     }
 
-    public Tutor save(Tutor tutor) {
-        return repo.save(tutor);
+    public VeterinarioCanil save(VeterinarioCanil veterinarioCanil) {
+        return repo.save(veterinarioCanil);
     }
 
 }

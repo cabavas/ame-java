@@ -14,8 +14,77 @@ public class VeterinarioCanil implements Serializable {
     @Column(name = "id_veterinario_canil")
     private Integer id;
 
-    @Column(name = "protocolo")
-    private String protocol;
+   @Column(name = "endereco")
+    private String address;
+
+   @Column(name = "idade")
+    private Integer age;
+
+   @Column(name = "historico_animal")
+    private String animalHistory;
+
+   @Column(name = "nome_animal")
+    private String animalName;
+
+   @Column(name = "raca")
+    private String breed;
+
+   @Column(name = "castrado")
+    private String castrated;
+
+   @Column(name = "data_castracao")
+    private LocalDate castrationDate;
+
+   @Column(name = "quimioterapia")
+    private Boolean chemo;
+
+   @Column(name = "qtd_quimio")
+    private Integer chemoAmount;
+
+   @Column(name = "cidade")
+    private String city;
+
+   @Column(name = "cor_coleira")
+    private String collarColor;
+
+   @Column(name = "numero_coleira")
+   private String collarNumber;
+
+   @Column(name = "endereco_denuncia")
+    private String complaintAddress;
+
+   @Column(name = "complemento")
+    private String complement;
+
+   @Column(name = "cpf")
+    private String cpf;
+
+   @Column(name = "data")
+    private LocalDate date;
+
+   @Column(name = "doutor")
+    private String doctor;
+
+   @Column(name = "5_quimio")
+    private LocalDate fifthChemo;
+
+    @Column(name = "1_quimio")
+    private LocalDate firstChemo;
+
+    @Column(name = "1_evo_coleira")
+    private String firstCollarEvolution;
+
+    @Column(name = "data_1_evo_coleira")
+    private LocalDate firstEvolutionDate;
+
+    @Column(name = "4_quimio")
+    private LocalDate fourthChemo;
+
+    @Column(name = "bairro")
+    private String neighborhood;
+
+    @Column(name = "numero")
+    private String number;
 
     @Column(name = "ordem")
     private String order;
@@ -23,190 +92,249 @@ public class VeterinarioCanil implements Serializable {
     @Column(name = "data_ordem")
     private LocalDate orderDate;
 
-    @Column(name = "nome_denunciante")
-    private String complainantName;
-
-    @Column(name = "endereco_denuncia")
-    private String complaintAddress;
-
-    @Column(name = "nome_animal")
-    private String animalName;
-
-    @Column(name = "especie")
-    private String species;
-
-    @Column(name = "idade")
-    private Integer age;
-
-    @Column(name = "raca")
-    private String breed;
-
-    @Column(name = "peso")
-    private String weight;
-
     @Column(name = "nome_proprietario")
     private String ownerName;
-
-    @Column(name = "endereco")
-    private String address;
-
-    @Column(name = "numero")
-    private String number;
-
-    @Column(name = "complemento")
-    private String complement;
-
-    @Column(name = "bairro")
-    private String neighborhood;
-
-    @Column(name = "cidade")
-    private String city;
 
     @Column(name = "telefone")
     private String phone;
 
-    @Column(name = "whatsapp")
-    private String whatsapp;
+    @Column(name = "protocolo")
+    private String protocol;
 
     @Column(name = "rg")
     private String rg;
 
-    @Column(name = "cpf")
-    private String cpf;
+    @Column(name = "2_quimio")
+    private LocalDate secondChemo;
 
-    @Column(name = "data_atendimento")
-    private LocalDate consultDate;
-
-    @Column(name = "id_veterinario")
-    private Integer vetId;
-
-    @Column(name = "cor_coleira")
-    private String collarColor;
-
-    @Column(name = "numero_coleira")
-    private String collarNumber;
-
-    @Column(name = "historico_animal")
-    private String animalHistory;
-
-    @Column(name = "castrado")
-    private String castrated;
-
-    @Column(name = "data_castracao")
-    private String castrationDate;
-
-    @Column(name = "vermifugado")
-    private String vermifuged;
-
-    @Column(name = "data_vermifugacao")
-    private String vermifugationDate;
-
-    @Column(name = "vacinado")
-    private String vaccinated;
-
-    @Column(name = "data_vacinacao")
-    private String vaccinationDate;
-
-    @Column(name = "1_evolucao_coleira")
-    private String firstCollarEvolution;
-
-    @Column(name = "data_1_evolucao_coleira")
-    private String firstCollarEvolutionDate;
-
-    @Column(name = "2_evolucao_coleira")
+    @Column(name = "2_evo_coleira")
     private String secondCollarEvolution;
 
-    @Column(name = "data_2_evolucao_coleira")
-    private String secondCollarEvolutionDate;
+    @Column(name = "data_2_evo_coleira")
+    private LocalDate secondEvolutionDate;
 
-    @Column(name = "3_evolucao_coleira")
-    private String thirdCollarEvolution;
-
-    @Column(name = "data_3_evolucao_coleira")
-    private String thirdCollarEvolutionDate;
-
-    @Column(name = "quimioterapia")
-    private String chemo;
-
-    @Column(name = "qtd_quimioterapia")
-    private String amountChemos;
-
-    @Column(name = "1_quimio")
-    private String firstChemo;
-
-    @Column(name = "2_quimio")
-    private String secondChemo;
+    @Column(name = "especie")
+    private String species;
 
     @Column(name = "3_quimio")
-    private String thirdChemo;
+    private LocalDate thirdChemo;
 
-    @Column(name = "4_quimio")
-    private String fourthChemo;
+    @Column(name = "3_evo_coleira")
+    private String thirdCollarEvolution;
 
-    @Column(name = "5_quimio")
-    private String fifthChemo;
+    @Column(name = "data_3_evo_coleira")
+    private LocalDate thirdEvolutionDate;
+
+    @Column(name = "vacinado")
+    private Boolean vaccinated;
+
+    @Column(name = "data_vacinacao")
+    private LocalDate vaccinationDate;
+
+    @Column(name = "vermifugado")
+    private Boolean vermifuged;
+
+    @Column(name = "data_vermifugacao")
+    private LocalDate vermifugationDate;
+
+    @Column(name = "peso")
+    private String weight;
+
+    @Column(name = "whatsapp")
+    private Boolean whatsapp;
+
+    @Column(name = "denunciante")
+    private String whistleblower;
 
     public VeterinarioCanil() {
-    }
-
-    public VeterinarioCanil(Integer id, String protocol, String order, LocalDate orderDate, String complainantName, String complaintAddress, String animalName, String species, Integer age, String breed, String weight, String ownerName, String address, String number, String complement, String neighborhood, String city, String phone, String whatsapp, String rg, String cpf, LocalDate consultDate, Integer vetId, String collarColor, String collarNumber, String animalHistory, String castrated, String castrationDate, String vermifuged, String vermifugationDate, String vaccinated, String vaccinationDate, String firstCollarEvolution, String firstCollarEvolutionDate, String secondCollarEvolution, String secondCollarEvolutionDate, String thirdCollarEvolution, String thirdCollarEvolutionDate, String chemo, String amountChemos, String firstChemo, String secondChemo, String thirdChemo, String fourthChemo, String fifthChemo) {
-        this.id = id;
-        this.protocol = protocol;
-        this.order = order;
-        this.orderDate = orderDate;
-        this.complainantName = complainantName;
-        this.complaintAddress = complaintAddress;
-        this.animalName = animalName;
-        this.species = species;
-        this.age = age;
-        this.breed = breed;
-        this.weight = weight;
-        this.ownerName = ownerName;
-        this.address = address;
-        this.number = number;
-        this.complement = complement;
-        this.neighborhood = neighborhood;
-        this.city = city;
-        this.phone = phone;
-        this.whatsapp = whatsapp;
-        this.rg = rg;
-        this.cpf = cpf;
-        this.consultDate = consultDate;
-        this.vetId = vetId;
-        this.collarColor = collarColor;
-        this.collarNumber = collarNumber;
-        this.animalHistory = animalHistory;
-        this.castrated = castrated;
-        this.castrationDate = castrationDate;
-        this.vermifuged = vermifuged;
-        this.vermifugationDate = vermifugationDate;
-        this.vaccinated = vaccinated;
-        this.vaccinationDate = vaccinationDate;
-        this.firstCollarEvolution = firstCollarEvolution;
-        this.firstCollarEvolutionDate = firstCollarEvolutionDate;
-        this.secondCollarEvolution = secondCollarEvolution;
-        this.secondCollarEvolutionDate = secondCollarEvolutionDate;
-        this.thirdCollarEvolution = thirdCollarEvolution;
-        this.thirdCollarEvolutionDate = thirdCollarEvolutionDate;
-        this.chemo = chemo;
-        this.amountChemos = amountChemos;
-        this.firstChemo = firstChemo;
-        this.secondChemo = secondChemo;
-        this.thirdChemo = thirdChemo;
-        this.fourthChemo = fourthChemo;
-        this.fifthChemo = fifthChemo;
     }
 
     public Integer getId() {
         return id;
     }
 
-    public String getProtocol() {
-        return protocol;
+    public String getAddress() {
+        return address;
     }
 
-    public void setProtocol(String protocol) {
-        this.protocol = protocol;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getAnimalHistory() {
+        return animalHistory;
+    }
+
+    public void setAnimalHistory(String animalHistory) {
+        this.animalHistory = animalHistory;
+    }
+
+    public String getAnimalName() {
+        return animalName;
+    }
+
+    public void setAnimalName(String animalName) {
+        this.animalName = animalName;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
+    }
+
+    public String getCastrated() {
+        return castrated;
+    }
+
+    public void setCastrated(String castrated) {
+        this.castrated = castrated;
+    }
+
+    public LocalDate getCastrationDate() {
+        return castrationDate;
+    }
+
+    public void setCastrationDate(LocalDate castrationDate) {
+        this.castrationDate = castrationDate;
+    }
+
+    public Boolean getChemo() {
+        return chemo;
+    }
+
+    public void setChemo(Boolean chemo) {
+        this.chemo = chemo;
+    }
+
+    public Integer getChemoAmount() {
+        return chemoAmount;
+    }
+
+    public void setChemoAmount(Integer chemoAmount) {
+        this.chemoAmount = chemoAmount;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCollarColor() {
+        return collarColor;
+    }
+
+    public void setCollarColor(String collarColor) {
+        this.collarColor = collarColor;
+    }
+
+    public String getComplaintAddress() {
+        return complaintAddress;
+    }
+
+    public void setComplaintAddress(String complaintAddress) {
+        this.complaintAddress = complaintAddress;
+    }
+
+    public String getComplement() {
+        return complement;
+    }
+
+    public void setComplement(String complement) {
+        this.complement = complement;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public String getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
+    }
+
+    public LocalDate getFifthChemo() {
+        return fifthChemo;
+    }
+
+    public void setFifthChemo(LocalDate fifthChemo) {
+        this.fifthChemo = fifthChemo;
+    }
+
+    public LocalDate getFirstChemo() {
+        return firstChemo;
+    }
+
+    public void setFirstChemo(LocalDate firstChemo) {
+        this.firstChemo = firstChemo;
+    }
+
+    public String getFirstCollarEvolution() {
+        return firstCollarEvolution;
+    }
+
+    public void setFirstCollarEvolution(String firstCollarEvolution) {
+        this.firstCollarEvolution = firstCollarEvolution;
+    }
+
+    public LocalDate getFirstEvolutionDate() {
+        return firstEvolutionDate;
+    }
+
+    public void setFirstEvolutionDate(LocalDate firstEvolutionDate) {
+        this.firstEvolutionDate = firstEvolutionDate;
+    }
+
+    public LocalDate getFourthChemo() {
+        return fourthChemo;
+    }
+
+    public void setFourthChemo(LocalDate fourthChemo) {
+        this.fourthChemo = fourthChemo;
+    }
+
+    public String getNeighborhood() {
+        return neighborhood;
+    }
+
+    public void setNeighborhood(String neighborhood) {
+        this.neighborhood = neighborhood;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public String getOrder() {
@@ -225,108 +353,12 @@ public class VeterinarioCanil implements Serializable {
         this.orderDate = orderDate;
     }
 
-    public String getComplainantName() {
-        return complainantName;
-    }
-
-    public void setComplainantName(String complainantName) {
-        this.complainantName = complainantName;
-    }
-
-    public String getComplaintAddress() {
-        return complaintAddress;
-    }
-
-    public void setComplaintAddress(String complaintAddress) {
-        this.complaintAddress = complaintAddress;
-    }
-
-    public String getAnimalName() {
-        return animalName;
-    }
-
-    public void setAnimalName(String animalName) {
-        this.animalName = animalName;
-    }
-
-    public String getSpecies() {
-        return species;
-    }
-
-    public void setSpecies(String species) {
-        this.species = species;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String getBreed() {
-        return breed;
-    }
-
-    public void setBreed(String breed) {
-        this.breed = breed;
-    }
-
-    public String getWeight() {
-        return weight;
-    }
-
-    public void setWeight(String weight) {
-        this.weight = weight;
-    }
-
     public String getOwnerName() {
         return ownerName;
     }
 
     public void setOwnerName(String ownerName) {
         this.ownerName = ownerName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public String getComplement() {
-        return complement;
-    }
-
-    public void setComplement(String complement) {
-        this.complement = complement;
-    }
-
-    public String getNeighborhood() {
-        return neighborhood;
-    }
-
-    public void setNeighborhood(String neighborhood) {
-        this.neighborhood = neighborhood;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public String getPhone() {
@@ -337,12 +369,12 @@ public class VeterinarioCanil implements Serializable {
         this.phone = phone;
     }
 
-    public String getWhatsapp() {
-        return whatsapp;
+    public String getProtocol() {
+        return protocol;
     }
 
-    public void setWhatsapp(String whatsapp) {
-        this.whatsapp = whatsapp;
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
     }
 
     public String getRg() {
@@ -353,116 +385,12 @@ public class VeterinarioCanil implements Serializable {
         this.rg = rg;
     }
 
-    public String getCpf() {
-        return cpf;
+    public LocalDate getSecondChemo() {
+        return secondChemo;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public LocalDate getConsultDate() {
-        return consultDate;
-    }
-
-    public void setConsultDate(LocalDate consultDate) {
-        this.consultDate = consultDate;
-    }
-
-    public Integer getVetId() {
-        return vetId;
-    }
-
-    public void setVetId(Integer vetId) {
-        this.vetId = vetId;
-    }
-
-    public String getCollarColor() {
-        return collarColor;
-    }
-
-    public void setCollarColor(String collarColor) {
-        this.collarColor = collarColor;
-    }
-
-    public String getCollarNumber() {
-        return collarNumber;
-    }
-
-    public void setCollarNumber(String collarNumber) {
-        this.collarNumber = collarNumber;
-    }
-
-    public String getAnimalHistory() {
-        return animalHistory;
-    }
-
-    public void setAnimalHistory(String animalHistory) {
-        this.animalHistory = animalHistory;
-    }
-
-    public String getCastrated() {
-        return castrated;
-    }
-
-    public void setCastrated(String castrated) {
-        this.castrated = castrated;
-    }
-
-    public String getCastrationDate() {
-        return castrationDate;
-    }
-
-    public void setCastrationDate(String castrationDate) {
-        this.castrationDate = castrationDate;
-    }
-
-    public String getVermifuged() {
-        return vermifuged;
-    }
-
-    public void setVermifuged(String vermifuged) {
-        this.vermifuged = vermifuged;
-    }
-
-    public String getVermifugationDate() {
-        return vermifugationDate;
-    }
-
-    public void setVermifugationDate(String vermifugationDate) {
-        this.vermifugationDate = vermifugationDate;
-    }
-
-    public String getVaccinated() {
-        return vaccinated;
-    }
-
-    public void setVaccinated(String vaccinated) {
-        this.vaccinated = vaccinated;
-    }
-
-    public String getVaccinationDate() {
-        return vaccinationDate;
-    }
-
-    public void setVaccinationDate(String vaccinationDate) {
-        this.vaccinationDate = vaccinationDate;
-    }
-
-    public String getFirstCollarEvolution() {
-        return firstCollarEvolution;
-    }
-
-    public void setFirstCollarEvolution(String firstCollarEvolution) {
-        this.firstCollarEvolution = firstCollarEvolution;
-    }
-
-    public String getFirstCollarEvolutionDate() {
-        return firstCollarEvolutionDate;
-    }
-
-    public void setFirstCollarEvolutionDate(String firstCollarEvolutionDate) {
-        this.firstCollarEvolutionDate = firstCollarEvolutionDate;
+    public void setSecondChemo(LocalDate secondChemo) {
+        this.secondChemo = secondChemo;
     }
 
     public String getSecondCollarEvolution() {
@@ -473,12 +401,28 @@ public class VeterinarioCanil implements Serializable {
         this.secondCollarEvolution = secondCollarEvolution;
     }
 
-    public String getSecondCollarEvolutionDate() {
-        return secondCollarEvolutionDate;
+    public LocalDate getSecondEvolutionDate() {
+        return secondEvolutionDate;
     }
 
-    public void setSecondCollarEvolutionDate(String secondCollarEvolutionDate) {
-        this.secondCollarEvolutionDate = secondCollarEvolutionDate;
+    public void setSecondEvolutionDate(LocalDate secondEvolutionDate) {
+        this.secondEvolutionDate = secondEvolutionDate;
+    }
+
+    public String getSpecies() {
+        return species;
+    }
+
+    public void setSpecies(String species) {
+        this.species = species;
+    }
+
+    public LocalDate getThirdChemo() {
+        return thirdChemo;
+    }
+
+    public void setThirdChemo(LocalDate thirdChemo) {
+        this.thirdChemo = thirdChemo;
     }
 
     public String getThirdCollarEvolution() {
@@ -489,67 +433,75 @@ public class VeterinarioCanil implements Serializable {
         this.thirdCollarEvolution = thirdCollarEvolution;
     }
 
-    public String getThirdCollarEvolutionDate() {
-        return thirdCollarEvolutionDate;
+    public LocalDate getThirdEvolutionDate() {
+        return thirdEvolutionDate;
     }
 
-    public void setThirdCollarEvolutionDate(String thirdCollarEvolutionDate) {
-        this.thirdCollarEvolutionDate = thirdCollarEvolutionDate;
+    public void setThirdEvolutionDate(LocalDate thirdEvolutionDate) {
+        this.thirdEvolutionDate = thirdEvolutionDate;
     }
 
-    public String getChemo() {
-        return chemo;
+    public Boolean getVaccinated() {
+        return vaccinated;
     }
 
-    public void setChemo(String chemo) {
-        this.chemo = chemo;
+    public void setVaccinated(Boolean vaccinated) {
+        this.vaccinated = vaccinated;
     }
 
-    public String getAmountChemos() {
-        return amountChemos;
+    public LocalDate getVaccinationDate() {
+        return vaccinationDate;
     }
 
-    public void setAmountChemos(String amountChemos) {
-        this.amountChemos = amountChemos;
+    public void setVaccinationDate(LocalDate vaccionationDate) {
+        this.vaccinationDate = vaccionationDate;
     }
 
-    public String getFirstChemo() {
-        return firstChemo;
+    public Boolean getVermifuged() {
+        return vermifuged;
     }
 
-    public void setFirstChemo(String firstChemo) {
-        this.firstChemo = firstChemo;
+    public void setVermifuged(Boolean vermifuged) {
+        this.vermifuged = vermifuged;
     }
 
-    public String getSecondChemo() {
-        return secondChemo;
+    public LocalDate getVermifugationDate() {
+        return vermifugationDate;
     }
 
-    public void setSecondChemo(String secondChemo) {
-        this.secondChemo = secondChemo;
+    public void setVermifugationDate(LocalDate vermifugationDate) {
+        this.vermifugationDate = vermifugationDate;
     }
 
-    public String getThirdChemo() {
-        return thirdChemo;
+    public String getWeight() {
+        return weight;
     }
 
-    public void setThirdChemo(String thirdChemo) {
-        this.thirdChemo = thirdChemo;
+    public void setWeight(String weight) {
+        this.weight = weight;
     }
 
-    public String getFourthChemo() {
-        return fourthChemo;
+    public Boolean getWhatsapp() {
+        return whatsapp;
     }
 
-    public void setFourthChemo(String fourthChemo) {
-        this.fourthChemo = fourthChemo;
+    public void setWhatsapp(Boolean whatsapp) {
+        this.whatsapp = whatsapp;
     }
 
-    public String getFifthChemo() {
-        return fifthChemo;
+    public String getWhistleblower() {
+        return whistleblower;
     }
 
-    public void setFifthChemo(String fifthChemo) {
-        this.fifthChemo = fifthChemo;
+    public void setWhistleblower(String whistleblower) {
+        this.whistleblower = whistleblower;
+    }
+
+    public String getCollarNumber() {
+        return collarNumber;
+    }
+
+    public void setCollarNumber(String collarNumber) {
+        this.collarNumber = collarNumber;
     }
 }
