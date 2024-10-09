@@ -146,6 +146,9 @@ public class VeterinarioCanil implements Serializable {
     @Column(name = "denunciante")
     private String whistleblower;
 
+    @Column(name = "link")
+    private String link;
+
     public VeterinarioCanil() {
     }
 
@@ -503,5 +506,13 @@ public class VeterinarioCanil implements Serializable {
 
     public void setCollarNumber(String collarNumber) {
         this.collarNumber = collarNumber;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 }
